@@ -1,0 +1,131 @@
+@charset "utf-8";
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+*{
+	margin:0px;
+	padding:0px;
+	font-family:Myriad Pro, arial;	
+	color:#000000; 
+}
+img, object, embed, video {
+}
+
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+}
+
+.fluid {
+	clear: both;
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.fluidList {
+    list-style:none;
+    list-style-image:none;
+    margin:0;
+    padding:0;        
+}
+
+/* Mobile Layout: 480px and below. */
+  
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 86.45%;
+	padding-left: 2.275%;
+	padding-right: 2.275%;
+	clear: none;
+	float: none;
+}
+
+#principal{
+	margin-left: auto;
+	margin-right: auto;
+	width:78%;
+	height:500px
+}
+
+#div1 {
+	
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#topo{
+	background-color:#D96D00;
+	width:100%;
+	height:10px;
+}
+
+#menuTopo{
+	background-image: url("../img/img_topo.fw.png");
+	height: 60px;
+	width: 100%;
+}
+
+#menu1{
+	background-color:#E9E9E9;
+	width:100%;
+	height:35px;
+}
+
+
+#menu2{
+	background-color:#D96D00;
+	width:99.9%;
+	height:35px;
+	
+}
+
+#rodape{
+	background-color:#222222;
+	width:100%;
+	height:200px;
+}
+
+.zeroMargin_mobile {
+    margin-left: 0;
+}
+
+.hide_mobile {
+    display: none;
+}
+
+
+@media only screen and (max-width: 1024px) {
+
+	.gridContainer {
+		margin-left: auto;
+		margin-right: auto;
+		width: 88.5%;
+		max-width: 1232px;
+		padding-left: 0.75%;
+		padding-right: 0.75%;
+		margin: auto;
+		clear: none;
+		float: none;
+		margin-left: auto;
+	}
+	
+	#principal{
+		margin-left: auto;
+		margin-right: auto;
+	    width:78%;
+	}
+
+	#div1 {
+	}
+
+	.zeroMargin_desktop {
+		margin-left: 0;
+	}
+
+	.hide_desktop {
+		display: none;
+	}
+}

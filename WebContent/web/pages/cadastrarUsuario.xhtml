@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	 <div id="div1" >
+                <img src="../../resources/img/cadastro_usuario.fw.png"/>
+             </div>
+             <div id="menu2">
+				<div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>	             
+             </div>
+             <div class="topCad">
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_01.fw.png"/>
+             	<font>Cadastrar Usuário</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_02.fw.png"/>
+             	<font>Cadastrar Time</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png"/>
+             	<font>Cadastrar Quadra/Campo</font>
+             </div>
+			
+			 <h:form>
+			 	<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:30px;">
+			 		<h:outputLabel  value="Nome"/>
+			 		<p:inputText value="#{usuarioController.usuario.nome}"  id="nome" size="40" maxlength="50"/>
+			 		
+			 		<h:outputLabel value="SobreNome" />
+			 		<p:inputText value="#{usuarioController.usuario.sobreNome}" id="sobreNome" size="40" maxlength="50"/>
+			 		
+			 		<h:outputLabel value="Data Nasc." />
+			 		<p:inputMask mask="99/99/9999" value="#{usuarioController.usuario.dataNasc}" id="dataNasc" size="12"/>
+			 		
+			 		<h:outputLabel value="Cpf" />
+			 		<p:inputMask mask="999.999.999-99" value="#{usuarioController.usuario.cpf}" id="cpf" size="15"/>
+			 		
+			 		<h:outputLabel  value="Sexo"/>
+		 		 	<p:selectOneRadio value="#{usuarioController.usuario.sexo}">
+		 		 		<f:selectItem itemLabel="Masculino" itemValue="M"/>
+		 		 		<f:selectItem itemLabel=" Feminino" itemValue="F"/>
+		 		 	</p:selectOneRadio>
+		 		 	
+		 		 	<h:outputLabel value="Email" />
+            		<p:inputText  id="email" value="#{usuarioController.usuario.contato.email}" required="true"  size="40" maxlength="100"
+ 						validatorMessage = "E-mail inválido formato">
+ 
+	  					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+ 
+					</p:inputText> 
+					
+					<h:outputLabel value="Tel. Celular" />
+					<p:inputMask   mask="(99) 99999 - 9999" value="#{usuarioController.usuario.contato.telefoneCelular}" id="celular" size="18"/>
+					
+					<h:outputLabel value="Tel. Residêncial" />
+					<p:inputMask mask="(99) 9999 - 9999" value="#{usuarioController.usuario.contato.telefoneResidencial}"  id="telResindencial" size="18"/>
+					
+					<h:outputLabel value="Tel. Comercial" />
+					<p:inputMask mask="(99) 9999 - 9999" value="#{usuarioController.usuario.contato.telefoneComercial}"  id="telComeercial" size="18"/>
+					
+					<h:outputLabel value="Senha" />  
+            		<p:password id="senha" value="#{usuarioController.usuario.senha}"/>  
+  
+            		<h:outputLabel  value="Confirmar Senha" />  
+            		<p:password id="confirmarSenha" value="#{usuarioController.usuario.confirmarSenha}"/>  
+					  
+			 	</h:panelGrid>
+			 	
+			 	<h:panelGrid columns="2" style="margin-left:102px;">
+			 		<p:selectBooleanCheckbox id="sms" value="#{usuarioController.usuario.envioSms}"/>
+			 		<h:outputText value="Concordo com o recebimento de SMS da Liga Esporte Amador." />
+			 	
+			 		<p:selectBooleanCheckbox id="termo" value="#{usuarioController.usuario.termoContrato}"/>
+			 		<h:outputText value="Concordo com os Termos de Serviço e Política de Privacidade do Liga Esporte Amador " />
+			 		
+			 	</h:panelGrid>
+			 	
+			 	<h:panelGrid columns="1" style="margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:30px;">
+					<p:commandButton value="Proximo" action="#{usuarioController.insertUsuario}"/>			 			  					
+			 	</h:panelGrid>
+			 	
+			 </h:form>
+			 <h:panelGrid>
+				 <p:messages id="messages" autoUpdate="true" closable="true" >
+					<p:effect type="fade" event="load" speed="10000" />
+				</p:messages>
+			</h:panelGrid>
+        </ui:define>
+    </ui:composition>
+</html>

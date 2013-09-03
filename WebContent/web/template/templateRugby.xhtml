@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="#{request.contextPath}/resources/css/rugby.css" rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/resources/themes/redmond/theme.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<h:body>
+	
+		<div id="topo"></div>
+		<div id="alinhamento">
+			<img src="#{request.contextPath}/resources/img/liga.fw.png" />
+		</div>
+		
+		<div id="menuTopo">
+		</div>
+		
+		<div id="menu1">
+		</div>
+		
+	<div id="principal">
+		<ui:insert name="conteudo">
+		
+		</ui:insert>
+	</div>
+	<div id="rodape">
+	 	<div id="rodInterno">
+	 		<br/>
+		 	<div class="menuRodape">
+		 		<ui:include src="../menu/menuInterno.jsp"/>
+		 	</div>
+		 	<div class="logoRodape">
+		 		<img src="../../../resources/img/logo-liga-footer.png"/>   		
+		 	</div>
+		 	<div class="diretosReservados">
+		 		<font>© 2012. Todos os direitos reservados.</font>   		
+		 	</div>
+		 	<div class="facebook">
+		 		<a href="#">
+		 			<img src="../../../resources/img/bt-facebook-footer.png"/>
+		 		</a>   		
+		 	</div>
+		 	<div class="twitter">
+		 		<a href="#">
+		 			<img src="../../../resources/img/bt-twitter-footer.png"/>
+		 		</a>
+		 	</div>
+	 	</div>
+	</div>
+</h:body>
+
+</html>

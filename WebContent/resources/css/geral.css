@@ -1,0 +1,504 @@
+@charset "utf-8";
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+*{
+	margin:0px;
+	padding:0px;
+	font-family:verdana;	
+	color:#000000; 
+	font-size: 12px;
+
+
+}
+img, object, embed, video, div {
+}
+
+.ie6 img {
+}
+
+.fluid {
+	clear: both;
+	float: left;
+	display: block;
+}
+
+.fluidList {
+    list-style:none;
+    list-style-image:none;
+    margin:0;
+    padding:0;        
+}
+  
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	clear: none;
+	float: none;
+}
+
+#principal{
+	margin-left: auto;
+	margin-right: auto;
+	width:960px;
+}
+
+#div1 {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.alingRigth label {
+	display: block;
+	text-align: right;
+}
+
+.alingLeft label {
+	display: block;
+	text-align: left;
+}
+
+#topo{
+	background-color:#D96D00;
+	height:10px;
+}
+
+#menuTopo{
+	background-image: url("../img/img_topo.fw.png");
+	height: 60px;
+	background-repeat: repeat-x;
+}
+/** Menu Superior*/
+#menu1{
+	background-color:#E9E9E9;
+	height:35px;
+}
+
+.menuSuperior{
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.menuSuperior ul{
+	list-style:none;
+}
+
+.menuSuperior ul li{
+	display: inline;
+}
+
+.menuSuperior ul li a{
+	text-decoration: none;
+	color: #666666;
+	padding: 10px 43px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.menuSuperior ul li a:HOVER{
+	color: #DE7205;
+}
+
+/** FIM Menu Superior*/
+
+/** Menu Interno Superior*/
+#menu2{
+	background-color:#D96D00;
+	width:960px;
+	height:35px;
+	
+}
+
+.menuInternoInterior{
+	margin-left: 60px;
+}
+
+.menuInternoInterior ul{
+	list-style:none;
+}
+
+.menuInternoInterior ul li{
+	display: inline;
+}
+
+.menuInternoInterior ul li a{
+	text-decoration: none;
+	color: #FFF;
+	padding: 10px 5px;
+	display: inline-block;
+	font-weight: bold;
+}
+
+.menuInternoInterior ul li a:HOVER{
+	color: #666666;
+}
+
+
+/** Fim Menu Interno Inferior*/
+
+/** css rodape*/
+#rodape{
+	background-color:#222222;
+	width:100%;
+	height:200px;
+}
+
+#rodInterno{
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.logoRodape{
+	margin-top: 90px;
+	margin-left: 60px;
+}
+.diretosReservados{
+	margin-left: 140px;  
+	margin-top: -18px; 
+	font-size: 14px;
+}
+.diretosReservados font{
+	color: #FFF; 
+	margin-top: 5px;
+}
+.facebook{
+	margin-left: 400px; 
+	margin-top: -30px;
+}
+.twitter{
+	margin-left: 445px; 
+	margin-top: -35px;
+}
+/** Fim css rodape*/
+
+.zeroMargin_mobile {
+    margin-left: 0;
+}
+
+.hide_mobile {
+    display: none;
+}
+
+#alinhamento{
+	width: 960px;
+	height:120px;
+	margin-top:5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.menuRodape{
+	margin-left: 60px;
+}
+
+.menuRodape ul{
+	list-style:none;
+}
+
+.menuRodape ul li{
+	display: inline;
+}
+
+.menuRodape ul li a{
+	text-decoration: none;
+	color: #FFF;
+	padding: 0px 5px;
+	display: inline-block;
+	font-weight: bold;
+}
+
+.menuRodape ul li a:HOVER{
+	color: #DE7205;
+}
+
+.topCad{
+	
+	margin-top: 40px;
+	width: 960px;
+}
+
+/*-----------------------------MENU 1--------------------------*/			
+.menu-all{
+	width: 960px; 
+	background-color:#EAEAEA;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100px;
+}
+.menu-1{
+	width: 800px; 
+	height: 100px;
+	margin-left:100px;
+}		
+.menu-1 .title-esporte{
+	float:left;
+	width:165px;
+	color: #999999;
+	font-size: 20px;
+	font-weight:bold;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #FFFFFF;
+	letter-spacing: -1px;
+	margin-top: 30px;
+	line-height: 25px;
+}	
+.menu-1 .title-esporte span{
+	font-size: 36px;
+	color: #999999;
+	text-shadow: 1px 1px 1px #FFFFFF;
+}	
+.menu-1 ul{ 
+	float:left;
+}
+.menu-1 ul li{ 
+	display:inline;
+}
+.menu-1 ul li.bt-futebol{
+	background:url("../img/bt-futebol.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff; 
+	display:block;
+}
+.menu-1 ul li.bt-futebol:hover{
+	background:url("../img/bt-futebol-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-basquete{
+	background:url("../img/bt-basquete.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-basquete:hover{
+	background:url("../img/bt-basquete-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-corrida{
+	background:url("../img/bt-corrida.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-corrida:hover{
+	background:url("../img/bt-corrida-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-tennis{
+	background:url("../img/bt-tenis.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-tennis:hover{
+	background:url("../img/bt-tenis-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-volei{
+	background:url("../img/bt-volei.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-volei:hover{
+	background:url("../img/bt-volei-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-handebol{
+	background:url("../img/bt-handebol.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-handebol:hover{
+	background:url("../img/bt-handebol-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-maisesportes{
+	background:url("../img/bt-mais.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-maisesportes:hover{
+	background:url("../img/bt-mais-over.gif") no-repeat;
+}
+.menu-1 ul li.bt-rugby{
+	background:url("../img/bt-rugby.gif") no-repeat;
+	text-indent:-999999px;
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background-color:#ffffff;
+}
+.menu-1 ul li.bt-rugby:hover{
+	background:url("../img/bt-rugby-over.gif") no-repeat;
+}
+
+/*-----------------------------HEADER - TOPO-LOGIN--------------------------*/
+.login {
+	margin-left:auto;
+	margin-right:auto;
+	width: 960px;
+}
+
+.login .loca-age {
+	float: left;
+}
+
+.login .loca-age ul li {
+	display: inline;
+	margin-right: 10px;
+	margin-top: 9px;
+}
+
+.login .loca-age .bt-localizador {
+	background: url("../img/bt-localizar-over.png") no-repeat scroll 0 0
+		transparent;
+	display: block;
+	float: left;
+	height: 45px;
+	text-indent: -999999px;
+	width: 270px;
+}
+
+.login .loca-age .bt-localizador:hover {
+	background: url(../img/bt-localizar.png) no-repeat;
+}
+
+.login .loca-age .bt-agendar {
+	background: url(../img/bt-agendar-over.png) no-repeat;
+	text-indent: -999999px;
+	float: left;
+	width: 180px;
+	height: 45px;
+	display: block;
+}
+
+.login .loca-age .bt-agendar:hover {
+	background: url(../img/bt-agendar.png) no-repeat;
+}
+
+.login .form-login ul li {
+	display: inline;
+	margin-right: 10px;
+	float: left;
+}
+
+.login .form-login ul li #login1_txtSenha {
+}
+
+.login .form-login ul li #login1_txtUsuario {
+}
+
+.login .form-login {
+	color: #666666;
+	float: left;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.login .form-login input {
+	height: 28px;
+	width: 130px;
+	border-radius: 5px 5px 5px 5px;
+	margin-left: 10px;
+	font-size: 12px;
+	padding: 3px;
+}
+
+.login .form-login input #txtUsuario {
+	height: 28px;
+	margin-left: 5px;
+	width: 70px;
+}
+
+.login .form-login span {
+	font-size: 12px;
+}
+
+.login .form-login #button {
+	height: 28px;
+	margin-left: 5px;
+	width: 70px;
+}
+
+.btnSair {
+	float: none;
+	margin-left: 10px;
+}
+
+.bt-conta {
+	background-color: #FF7200;
+	border: 10px solid #FF7200;
+	border-radius: 5px 5px 5px 5px;
+	color: #FFFFFF;
+	float: none;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.bt-conta1 {
+	background-color: #FF7200;
+	border: 10px solid #FF7200;
+	border-radius: 5px 5px 5px 5px;
+	color: #FFFFFF;
+	float: none;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+}
+/*-----------------------------MENU 1--------------------------*/
+@media only screen and (max-width: 1024px) {
+
+	.gridContainer {
+		margin-left: auto;
+		margin-right: auto;
+		width: 88.5%;
+		max-width: 1232px;
+		padding-left: 0.75%;
+		padding-right: 0.75%;
+		margin: auto;
+		clear: none;
+		float: none;
+		margin-left: auto;
+	}
+	
+	#principal{
+		margin-left: auto;
+		margin-right: auto;
+	    width:78%;
+	}
+
+	#div1 {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.zeroMargin_desktop {
+		margin-left: 0;
+	}
+
+	.hide_desktop {
+		display: none;
+	}
+	
+	#alinhamento{
+	
+	margin-left: 100px;
+}
+}

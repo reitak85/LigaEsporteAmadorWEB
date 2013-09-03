@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../template/templateRugby.xhtml">
+	<ui:define name="conteudo">
+
+		<div id="div1">
+			<img src="#{request.contextPath}/resources/img/rugby.fw.png" />
+		</div>
+
+		<div id="menu2">
+			<div class="menuInternoInterior">
+				<ui:include src="../../../web/menu/menuInterno.jsp" />
+			</div>
+		</div>
+
+		
+		<div style="margin-top: 10px; margin-bottom: 10px; z-index:1; "> 
+			<p:galleria value="#{galleriaController.images}" var="image"
+				panelWidth="500" panelHeight="400"  showFilmstrip="true" style="z-index:1;">
+				<p:graphicImage value="/resources/futebol/#{image}" alt="Image Description for #{image}" title="Liga Esporte Amador" width="500" height="400" />
+			</p:galleria>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

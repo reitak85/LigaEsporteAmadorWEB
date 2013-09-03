@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	<div id="div1" >
+                <img src="../../resources/img/contato.fw.png"/>
+             </div>
+             <div id="menu2">
+	             <div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>
+             </div>
+            <h:form>
+	            <div style="margin-top:50px; margin-bottom: 30px;">
+	            
+	            	<font style="font-size: 22px;  font-weight: bold;">
+	             		Formulário de Contato
+	             	</font>
+	            
+	            	<h:panelGrid columns="2" style="margin-top:30px;" styleClass="alingRigth">
+	            		<h:outputLabel value="Nome"/>
+	            		<p:inputText id="nome" size="40" maxlength="100"/>
+	            		
+	            		<h:outputLabel value="E-mail"/>
+	            		<p:inputText id="email" required="true"  size="40" maxlength="100"
+	 						validatorMessage = "E-mail inválido formato">
+	 
+		  					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+	 
+						</p:inputText> 
+						
+						<h:outputLabel value="Assunto"/>
+						<p:inputText id="assunto" size="40" maxlength="50"/>
+						
+						<h:outputLabel value="Setor" />
+						 <p:selectOneMenu id="setor" styleClass="alingLeft" style="width:150px;" required="true" requiredMessage="por Favor selecione um setor.">  
+	                		<f:selectItem  itemLabel="Selecione..."  ItemValue=""  noSelectionOption="true"/>
+		            		<f:selectItem  itemLabel="Financeiro"          ItemValue="1"/>
+		            		<f:selectItem  itemLabel="Comercial"           ItemValue="2"/>
+		            		<f:selectItem  itemLabel="Marketing"           ItemValue="3"/>
+		            		<f:selectItem  itemLabel="Suporte"             ItemValue="4"/>
+		            		<f:selectItem  itemLabel="Design"              ItemValue="5"/>
+		            		<f:selectItem  itemLabel="TI"                  ItemValue="6"/>
+	            		</p:selectOneMenu >
+	            		
+	            		<h:outputLabel value="Comentarios" />
+	            		<p:inputTextarea rows="5" cols="45" id="comentarios" maxlength="255" autoResize="false"/>
+	            		
+	            	</h:panelGrid>
+	            	<h:panelGrid columns="1" style="margin-top:15px; margin-left:380px;">
+	            		<p:commandButton value="Enviar"/>
+	            	</h:panelGrid>
+	            	
+	            </div>
+            </h:form>
+            
+			<div style="border: 1px solid #c3c3c3; width:425px; height:350px; margin-left: 530px; margin-top:-380px;  margin-bottom:60px; font-family:Myriad Pro; font-size: 14px;">
+				
+				<font style="font-weight:bold; margin-left: 13px;">
+            		R. Barros Cassal, 125 - Itaquera
+            	</font>
+            	<br/>‎
+            	<font style="font-weight:bold; margin-left: 11px;">
+					São Paulo, 08210-180. ‎
+            	</font>
+				<div style="margin-left: 11px; margin-top: 10px;">
+					<iframe style="border: 1px solid #c3c3c3;" width="400" height="250" 
+						src="https://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt&amp;geocode=&amp;q=Rua+Barros+Cassal,+125,+S%C3%A3o+Paulo&amp;aq=0&amp;oq=Rua+Barros+Cassal,+125&amp;sll=-23.516932,-46.543275&amp;sspn=0.208402,0.363579&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Barros+Cassal,+125+-+Itaquera,+S%C3%A3o+Paulo,+08210-180&amp;t=m&amp;z=14&amp;iwloc=A&amp;ll=-23.53976,-46.455346&amp;output=embed">
+					</iframe>
+					<br/> 
+					<small>
+					
+						<a href="https://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt&amp;geocode=&amp;q=Rua+Barros+Cassal,+125,+S%C3%A3o+Paulo&amp;aq=0&amp;oq=Rua+Barros+Cassal,+125&amp;sll=-23.516932,-46.543275&amp;sspn=0.208402,0.363579&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Barros+Cassal,+125+-+Itaquera,+S%C3%A3o+Paulo,+08210-180&amp;t=m&amp;z=14&amp;iwloc=A&amp;ll=-23.53976,-46.455346"
+						style="color: #0000FF; text-align: left">Ver mapa maior</a>
+					
+					</small>
+				</div>
+			</div>
+			
+        </ui:define>
+    </ui:composition>
+</html>

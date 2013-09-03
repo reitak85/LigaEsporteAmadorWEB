@@ -1,0 +1,201 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="../template/templateGeral.xhtml">
+	
+	<ui:define name="conteudo">
+		
+		
+		<div id="div1">
+			<img src="../../resources/img/cadastro_usuario.fw.png" />
+		</div>
+		<div id="menu2">
+			<div class="menuInternoInterior">
+				<ui:include src="../../web/menu/menuInterno.jsp" />
+			</div>
+		</div>
+		<div class="topCad">
+			<img alt="cadastro de usuario"
+				src="../../resources/img/cad_cinza_01.fw.png" /> <font>Cadastrar
+				Usuário</font> <img alt="cadastro de usuario"
+				src="../../resources/img/cad_laranja_02.fw.png" /> <font>Cadastrar
+				Time</font> <img alt="cadastro de usuario"
+				src="../../resources/img/cad_cinza_03.fw.png" /> <font>Cadastrar
+				Quadra/Campo</font>
+		</div>
+		
+		
+	
+		<h:form>
+			<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:30px; width:600px;">
+
+				<h:outputLabel value="Esporte" />
+				<p:selectOneMenu id="esporte" value="#{timeController.time.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+					<f:selectItem itemLabel="Selecione..." itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{timeController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"></f:selectItems>
+					<f:ajax event="change" render="categoria" listener="#{timeController.findCategoriaEsporte}"></f:ajax>
+				</p:selectOneMenu>
+
+
+				<h:outputLabel value="Categoria" />
+				<p:selectOneMenu id="categoria" value="#{timeController.time.categoria.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+					<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+					<f:selectItems value="#{timeController.categoriaEsportes}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria.id}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Cep"/>
+				<p:inputMask mask="99999-999" value="#{timeController.endereco.cep}">
+					<f:ajax event="blur" render="logradouro bairro cidade uf zona" listener="#{timeController.findEnderecoByCep}"/>
+				</p:inputMask>
+				
+				<h:outputLabel value="Estado" />
+				<p:inputText id="uf" readonly="true" size="20" value="#{timeController.endereco.cidade.uf}"/>
+
+				<h:outputLabel value="Cidade" />
+				<p:inputText id="cidade" readonly="true" size="30" value="#{timeController.endereco.cidade.nome}"/>
+
+				<h:outputLabel value="Bairro" />
+				<p:inputText id="bairro" readonly="true" size="30" value="#{timeController.endereco.bairro.nome}"/>
+				
+				<h:outputLabel value="Logradouro" />
+				<p:inputText id="logradouro" readonly="true" size="40" value="#{timeController.endereco.nome}"/>
+				
+				<h:outputLabel value="Numero" />
+				<p:inputText />
+				
+				<h:outputLabel value="Complemento" />
+				<p:inputText />
+				
+				<h:outputLabel value="Zona" />
+				<p:inputText id="zona" readonly="true" value="#{timeController.endereco.bairro.zona}"/>
+
+				<h:outputLabel value="Nome do Time" />
+				<p:inputText id="nomeTime" size="40" maxlength="100" value="#{timeController.time.nomeDoTime}" />
+
+				<h:outputLabel value="Seu Time é ?" />
+				<p:selectOneRadio id="categoriaTime" value="#{timeController.time.categoriaTime}" styleClass="alingLeft">
+					<f:selectItem itemLabel=" Mandante" itemValue="1" />
+					<f:selectItem itemLabel=" Mandante/Visitante" itemValue="2" />
+					<f:selectItem itemLabel=" Visitante" itemValue="3" />
+				</p:selectOneRadio>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1" style="margin-left:135px; margin-top:20px; heigth:50px;">
+				<h:outputLabel value="Emblema do Time" />
+				<p:fileUpload mode="advanced" sizeLimit="100000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+			</h:panelGrid>
+			
+			<h:panelGrid style="width:800px; margin-top:20px; margin-left:auto; margin-right:auto;">
+				<p:dataTable id="dataJogador" value="#{timeController.jogadors}" var="jogador"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+	            		Jogadores do Time  
+	        		</f:facet>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{jogador.nome}" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Email" />
+						</f:facet>
+						<h:outputText value="#{jogador.contato.email}" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Posicao" />
+						</f:facet>
+						<h:outputText value="#{jogador.posicao}" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Tel. Celular" />
+						</f:facet>
+						<h:outputText value="#{jogador.contato.telefoneCelular}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Tel. Residencial" />
+						</f:facet>
+						<h:outputText value="#{jogador.contato.telefoneResidencial}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Tel. Comercial" />
+						</f:facet>
+						<h:outputText value="#{jogador.contato.telefoneComercial}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Alterar" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-edit"/>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-edit"/>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+			
+			<h:panelGrid style="margin-left:80px; margin-top:10px;">
+				<p:commandButton id="modalDialogButton" value="Adicionar Jogador" onclick="dlg2.show();" type="button"/> 
+			</h:panelGrid>
+			
+			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
+	    		<p:commandButton value="Proximo"/>
+	    	</h:panelGrid>
+		
+			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
+		    	<h:panelGrid columns="2" styleClass="alingRigth">
+		    		<h:outputLabel value="Nome"/>
+		    		<p:inputText id="nome" size="40" maxlength="100" value="#{timeController.jogador.nome}"/>
+		    		
+		    		<h:outputLabel value="Email"/>
+		    		<p:inputText id="email" size="40" maxlength="100" value="#{timeController.jogador.contato.email}"/>
+		    		
+		    		<h:outputLabel value="Posicao"/>
+		    		<p:inputText id="posicao" size="30" maxlength="50" value="#{timeController.jogador.posicao}"/>
+		    		
+		    		<h:outputLabel value="Pra que time torce ?"/>
+		    		<p:inputText id="timeTorce" size="30" maxlength="50" value="#{timeController.jogador.timeTorce}"/>
+		    		
+		    		<h:outputLabel value="Tel. Celular"/>
+		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneCelular}"/>
+		    		
+		    		<h:outputLabel value="Tel. Residencial"/>
+		    		<p:inputMask mask="(99) 9999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneResidencial}"/>
+		    		
+		    		<h:outputLabel value="Tel. Comercial"/>
+		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneComercial}"/>
+		    		
+		    	</h:panelGrid>
+		    	<h:panelGrid columns="2" style="margin-right:auto; margin-left:auto; margin-top:15px;">
+		    		<p:commandButton value="Adicionar" action="#{timeController.addJogador}" update="dataJogador modalDialog"/>
+		    		<p:commandButton value="Cancelar" onclick="hide();" update="modalDialog"/>
+		    	</h:panelGrid>
+			</p:dialog> 
+	 	</h:form>  
+	</ui:define>
+</ui:composition>
+</html>

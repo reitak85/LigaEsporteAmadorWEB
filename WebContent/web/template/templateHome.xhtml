@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="#{request.contextPath}/resources/css/geral.css" rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/resources/themes/redmond/theme.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+
+<h:body>
+	
+		<div id="topo"></div>
+		<div id="alinhamento">
+			<img src="../../resources/img/liga.fw.png" />
+		</div>
+		<div id="menuTopo">
+			<div class="login">	
+			    <div class="loca-age">
+			        <ul>
+			            <li class="bt-localizador"><a href="#" title="Localizar Quadra/Campo" style="display: block;height: 100%;width: 100%;">Localizar Quadra/Campo</a></li>
+			            <li class="bt-agendar"><a href="#" title="Agendar Jogos" style="display: block;height: 100%;width: 100%;">Agendar Jogos</a></li>
+			        </ul>
+			    </div>
+			</div>
+		</div>
+		<div class="menu-all">
+			<div class="menu-1">
+	        	<div class="title-esporte">Selecione seu <br/><span>Esporte</span></div>
+	        	<ul>
+	            	<li class="bt-futebol"><a href="esportes/futebol.html" title="Futebol" style="display: block;height: 100%;width: 100%;"></a></li>
+	                <li class="bt-basquete"><a href="esportes/basquete.html" title="Basquete" style="display: block;height: 100%;width: 100%;"></a></li>
+	                <li class="bt-tennis"><a href="esportes/tenis.html" title="Tennis" style="display: block;height: 100%;width: 100%;"></a></li>
+	                <li class="bt-volei"><a href="esportes/volei.html" title="Volei" style="display: block;height: 100%;width: 100%;"></a></li>
+	                <li class="bt-handebol"><a href="esportes/handebol.html" title="Handebol" style="display: block;height: 100%;width: 100%;"></a></li>
+	                <li class="bt-rugby"><a href="esportes/rugby.html" title="Rugby" style="display: block;height: 100%;width: 100%;"></a></li>
+	            </ul>
+	        </div>
+        </div>
+		
+	<div id="principal">
+		<ui:insert name="conteudo">
+		
+		</ui:insert>
+	</div>
+	
+		<div id="rodape">
+	 	<div id="rodInterno">
+	 		<br/>
+		 	<div class="menuRodape">
+		 		<ui:include src="../menu/menuInterno.jsp"/>
+		 	</div>
+		 	<div class="logoRodape">
+		 		<img src="../../resources/img/logo-liga-footer.png"/>   		
+		 	</div>
+		 	<div class="diretosReservados">
+		 		<font>© 2012. Todos os direitos reservados.</font>   		
+		 	</div>
+		 	<div class="facebook">
+		 		<a href="#">
+		 			<img src="../../resources/img/bt-facebook-footer.png"/>
+		 		</a>   		
+		 	</div>
+		 	<div class="twitter">
+		 		<a href="#">
+		 			<img src="../../resources/img/bt-twitter-footer.png"/>
+		 		</a>
+		 	</div>
+	 	</div>
+	</div>
+</h:body>
+
+</html>

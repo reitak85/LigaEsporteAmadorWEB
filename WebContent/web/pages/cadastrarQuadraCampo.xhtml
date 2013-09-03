@@ -1,0 +1,164 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+            
+             <div id="div1" >
+                <img src="../../resources/img/cadastro_usuario.fw.png"/>
+             </div>
+             <div id="menu2">
+	             <div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>
+             </div>
+             <div class="topCad">
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_01.fw.png"/>
+             	<font>Cadastrar Usuário</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_02.fw.png"/>
+             	<font>Cadastrar Time</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_03.fw.png"/>
+             	<font>Cadastrar Quadra/Campo</font>
+             </div>
+            
+            <h:form>
+             		<h:panelGrid columns="2" style="margin-top:30px;" styleClass="alingRigth">
+             			<h:outputLabel value="Tipo"/>
+             			<p:selectOneMenu id="tipo" styleClass="alingLeft" style="width:150px;">
+             				<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>
+             				<f:selectItem itemLabel="Quadra" itemValue="1" />
+             				<f:selectItem itemLabel="Campo" itemValue="1" />
+             				<f:selectItem itemLabel="Society" itemValue="1" />
+             			</p:selectOneMenu>
+             			
+             			<h:outputLabel value="Nome Quadra/Campo"/>
+             			<p:inputText id="nomeQuadraCampo" size="40" maxlength="100"/>
+             			
+             			<h:outputLabel value="Cep"/>
+             			<p:inputMask mask="99999-999" id="cep" size="15" maxlength="9"/>
+             			
+             			<h:outputLabel value="Cidade"/>
+             			<p:inputText id="cidade" size="30" maxlength="50" readonly="true"/>
+             			
+             			<h:outputLabel value="Bairro"/>
+             			<p:inputText id="bairro" size="30" maxlength="50" readonly="true"/>
+             			
+             			<h:outputLabel value="Endereco"/>
+             			<p:inputText id="endereco" size="30" maxlength="50" readonly="true"/>
+             			
+             			<h:outputLabel value="Numero"/>
+             			<p:inputText id="numero" size="20" maxlength="20" />
+             			
+             			<h:outputLabel value="Complemento"/>
+             			<p:inputText id="complemento" size="30" maxlength="30" />
+					                  
+					    <h:outputLabel value="Observacoes" style="margin-top:10px;"/>
+					    <p:inputTextarea id="observacoes" rows="5" cols="60" autoResize="false" style="margin-top:10px;"/>
+					     
+					</h:panelGrid>
+					<h:panelGrid columns="1" style="margin-left:130px; margin-top:20px;">
+						
+						<h:outputLabel value="Imagens da Quadra/Campo"/>
+						<p:fileUpload  id="imagemQuadra" mode="advanced" sizeLimit="100000"
+									  multiple="true"
+					                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+					                  label="Anexar Img"
+					                  uploadLabel="Salvar"
+					                  cancelLabel="Cancelar"
+					                  />
+						
+					</h:panelGrid>             		
+             
+             	<h:panelGrid style="width:800px; margin-top:20px; margin-left:auto; margin-right:auto;">
+				<p:dataTable id="dataTable" var="car"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">  
+	            		Horarios de Jogos  
+	        		</f:facet>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Dia da Semana" />
+						</f:facet>
+						<h:outputText value="Luiz" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Horario de Inicio" />
+						</f:facet>
+						<h:outputText value="luiz@luiz.com" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Horario de Fim" />
+						</f:facet>
+						<h:outputText value="Alterar" />
+					</p:column>
+	
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Alterar" />
+						</f:facet>
+						<h:outputText value="(11) 95358 - 5795" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<h:outputText value="(11) 95358 - 5795" />
+					</p:column>
+					
+				</p:dataTable>
+			</h:panelGrid>
+			
+			<h:panelGrid style="margin-left:79px;">
+				<p:commandButton id="modalDialogButton" value="Modal" onclick="dlg2.show();" type="button"/> 
+			</h:panelGrid>
+			
+			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
+	    		<p:commandButton value="Finalizar"/>
+	    	</h:panelGrid>
+		</h:form>
+		
+		<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
+		    <h:form>
+		    	<h:panelGrid columns="2" styleClass="alingRigth">
+		    		<h:outputLabel value="Dia da Semana"/>
+		    		<p:selectOneMenu styleClass="alingLeft" style="width:150px;">
+		    			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
+		    			<f:selectItem itemLabel="Segunda-Feira" itemValue="Segunda-Feira" />
+		    			<f:selectItem itemLabel="Terca-Feira" itemValue="Terca-Feira" />
+		    			<f:selectItem itemLabel="Quarta-Feira" itemValue="Quarta-Feira" />
+		    			<f:selectItem itemLabel="Quinta-Feira" itemValue="Quinta-Feira" />
+		    			<f:selectItem itemLabel="Sexta-Feira" itemValue="Sexta-Feira" />
+		    			<f:selectItem itemLabel="Sabado" itemValue="Sabado" />
+		    			<f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+		    		</p:selectOneMenu>
+		    		
+		    		<h:outputLabel value="Horario Inicial"/>
+		    		<p:calendar id="horarioInicial" pattern="HH:mm" timeOnly="true" />
+		    		
+		    		<h:outputLabel value="Horario Final"/>
+		    		<p:calendar id="horarioFinal" pattern="HH:mm" timeOnly="true" />
+		    		
+		    	</h:panelGrid>
+		    	<h:panelGrid columns="2" style="margin-right:auto; margin-left:auto; margin-top:15px;">
+		    		<p:commandButton value="Adicionar"/>
+		    		<p:commandButton value="Cancelar"/>
+		    	</h:panelGrid>
+		    	
+		    	
+			    </h:form>  
+			</p:dialog> 
+            
+        </ui:define>
+    </ui:composition>
+</html>
