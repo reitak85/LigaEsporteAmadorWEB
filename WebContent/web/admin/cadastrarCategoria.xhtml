@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+
+
+			<div style="margin-top: 50px; margin-bottom: 100px; margin-left: 250px;">
+			
+				<h:outputText value="Cadastro de Categoria Esporte" style="font-size:22px;"/>
+				<br/>
+				<br/>
+				<br/>
+	      	
+	      		<h:form id="cadastrarCategoria">
+	      			<h:panelGrid columns="2" styleClass="alingRigth">
+	      				<h:outputLabel value="Esporte "/>
+	      				<p:selectOneMenu value="#{categoriaController.categoriaEsporte.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+	      					<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+	      					<f:selectItems value="#{categoriaController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"/>
+	      				</p:selectOneMenu>
+	     			
+	      				<h:outputLabel value="Nome "/>
+	      				<p:inputText size="50" maxlength="100"/>
+	      			
+	      				<h:outputLabel value="Descrição"/>
+	      				<p:inputTextarea cols="50" rows="3" autoResize="false"/>
+	      				
+		      		</h:panelGrid>
+	      			<h:panelGrid>
+	      				<p:commandButton value="Salvar" style="margin-top:10px; margin-left:370px;"/>
+	      			</h:panelGrid>
+	      		</h:form>
+      		</div>
+        </ui:define>
+    </ui:composition>
+</html>

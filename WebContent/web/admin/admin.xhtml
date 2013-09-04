@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+
+      		<div style="background-color: #ccc; width: 500px; height:300px; margin-left:220px; margin-top: 100px; margin-bottom: 100px;">
+      			<br/>
+      			<br/>
+      			<h:outputText value="Login" style="font-size:18px; margin-left:210px;"/>
+      			<br/>
+      			<h:outputText value="Liga Esporte Amador" style="font-size:18px; margin-left:150px;"/>
+      			<br/>
+      			<br/>
+      			<br/>
+      			<br/>
+      			<h:form id="logar" style="margin-left:30px;" styleClass="alingRigth">
+      				<h:panelGrid columns="2">
+      					<h:outputLabel value="E-mail "/>
+      					<p:inputText size="50" maxlength="150" value="#{loginController.userSistema.email}"/>
+      					
+      					<h:outputLabel value="Senha "/>
+      					<p:password size="30" value="#{loginController.userSistema.senha}"/>
+      					
+      				</h:panelGrid>
+      				<h:panelGrid columns="1">
+      					<p:commandButton action="#{loginController.logar}" 
+      									 value="Entrar"
+      									 update="logar" 
+      									 style="margin-top:10px; margin-left:345px;"/>
+      				</h:panelGrid>
+      				
+      			</h:form>
+      			<h:panelGrid style="width:500px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
+      		</div>
+      		  	
+        </ui:define>
+    </ui:composition>
+</html>
