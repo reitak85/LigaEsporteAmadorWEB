@@ -23,4 +23,11 @@ public class CategoriaEsporteServiceImpl implements CategoriaEsporteService{
 		return categoriaEsporteDao.findCategoriaEsporte(esporte);
 	}
 
+	@Override
+	public void insertCategoriaEsporte(CategoriaEsporte categoriaEsporte)
+			throws Exception {
+		
+		categoriaEsporteDao.insertCategoriaEsporte(categoriaEsporte);
+	}
+
 }

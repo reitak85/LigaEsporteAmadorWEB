@@ -8,4 +8,6 @@ import br.com.ligaesporteamador.model.Esporte;
 public interface CategoriaEsporteService {
 
 	public List<CategoriaEsporte> findCategoriaEsporte(Esporte esporte) throws Exception;
+	
+	public void insertCategoriaEsporte(CategoriaEsporte categoriaEsporte) throws Exception;
 }

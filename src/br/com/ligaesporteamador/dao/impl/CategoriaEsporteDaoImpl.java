@@ -26,4 +26,11 @@ public class CategoriaEsporteDaoImpl extends DataAccessService<CategoriaEsporte>
 		return createQueryById(query, params);
 	}
 
+	@Override
+	public void insertCategoriaEsporte(
+			CategoriaEsporte categoriaEsporte) throws Exception {
+		
+		create(categoriaEsporte);
+	}
+
 }
