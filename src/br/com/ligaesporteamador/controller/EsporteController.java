@@ -46,6 +46,16 @@ public class EsporteController extends EsporteBO{
 			e.printStackTrace();
 		}
 	}
+	
+	
+
+	public Esporte getEsporte() {
+		return esporte;
+	}
+
+	public void setEsporte(Esporte esporte) {
+		this.esporte = esporte;
+	}
 
 	public List<Esporte> getEsportes() {
 		return esportes;
