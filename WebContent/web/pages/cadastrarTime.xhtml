@@ -35,8 +35,7 @@
 
 				<h:outputLabel value="Esporte" />
 				<p:selectOneMenu id="esporte" value="#{timeController.time.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
-					<f:selectItem itemLabel="Selecione..." itemValue=""
-						noSelectionOption="true" />
+					<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
 					<f:selectItems value="#{timeController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"></f:selectItems>
 					<f:ajax event="change" render="categoria" listener="#{timeController.findCategoriaEsporte}"></f:ajax>
 				</p:selectOneMenu>

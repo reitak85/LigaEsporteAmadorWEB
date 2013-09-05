@@ -18,11 +18,12 @@ import br.com.ligaesporteamador.model.Time;
 import br.com.ligaesporteamador.service.CategoriaEsporteService;
 import br.com.ligaesporteamador.service.EnderecoService;
 import br.com.ligaesporteamador.service.EsporteService;
+import br.com.ligaesporteamador.service.JogadorService;
 import br.com.ligaesporteamador.service.TimeService;
 
 @Controller("timeController")
 @Scope("request")
-public class TimeCotroller {
+public class TimeController {
 
 	private Time time;
 	private Esporte esporte;
@@ -36,6 +37,9 @@ public class TimeCotroller {
 
 	@Autowired
 	private EsporteService esporteService;
+	
+	@Autowired
+	private JogadorService jogadorService;
 
 	@Autowired
 	private CategoriaEsporteService categoriaEsporteService;
@@ -46,7 +50,7 @@ public class TimeCotroller {
 	@Autowired
 	private TimeService timeService;
 
-	public TimeCotroller() {
+	public TimeController() {
 
 		time = new Time();
 		esporte = new Esporte();
@@ -90,23 +94,27 @@ public class TimeCotroller {
 			e.printStackTrace();
 		}
 	}
-
-	public void insertTime() {
-
-	}
 	
 	public void addJogador(){
-		
 		try {
-			
-			jogadors.add(jogador);
-			time.setJogador(jogadors);
-			timeService.insertTime(time);
+
+			jogador.setTime(time);
+			jogadorService.insertJogador(jogador);
+			jogadors = jogadorService.findJogador(jogador);
+			jogador = null;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void insertTime(){
+		try {
+			time = timeService.insertTime(time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<Esporte> getEsportes() {
