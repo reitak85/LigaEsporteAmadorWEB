@@ -20,4 +20,9 @@ public class EsporteServiceImpl implements EsporteService{
 		return esporteDao.findEsporte();
 	}
 
+	@Override
+	public void insertEsporte(Esporte esporte) throws Exception {
+		esporteDao.insertEsporte(esporte);
+	}
+
 }

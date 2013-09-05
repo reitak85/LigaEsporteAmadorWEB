@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CATEGORIA_ESPORTE")
-public class CategoriaEsporte {
+public class CategoriaEsporte extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

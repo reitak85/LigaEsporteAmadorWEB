@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.ligaesporteamador.bo.CategoriaEsporteBO;
 import br.com.ligaesporteamador.model.CategoriaEsporte;
 import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.service.CategoriaEsporteService;
@@ -17,7 +18,7 @@ import br.com.ligaesporteamador.util.EnviarMensagem;
 
 @Controller("categoriaController")
 @Scope("request")
-public class CategoriaController {
+public class CategoriaController extends CategoriaEsporteBO{
 
 	@Autowired
 	private EsporteService esporteService;
@@ -44,13 +45,21 @@ public class CategoriaController {
 	
 	public void insertCategoria(){
 		try {
-			
-			categoriaEsporteService.insertCategoriaEsporte(categoriaEsporte);
-			EnviarMensagem.erro("Categoria cadastrada com sucesso.", null, false);
+
+			categoriaEsporte = insertCategoriaValidation(categoriaEsporte);
+			String message = validationForm(categoriaEsporte);
+
+			if(!message.equals("")){
+				EnviarMensagem.atencao(message, null, false);
+			}else{
+
+				categoriaEsporteService.insertCategoriaEsporte(categoriaEsporte);
+				EnviarMensagem.informacao("Categoria cadastrada com sucesso.", null, false);
+			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
 			EnviarMensagem.erro("Erro ao cadastrar categoria.", null, false);
+			e.printStackTrace();
 		}
 	}
 

@@ -1,22 +1,45 @@
 package br.com.ligaesporteamador.bd;
 
 
+import java.util.Calendar;
+
 import org.hibernate.ejb.Ejb3Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.ligaesporteamador.model.UsuarioSistema;
+import br.com.ligaesporteamador.util.MD5;
+
 @Controller("gerarBD")
 @Scope("request")
-public class GerarBD{
+public class GerarBD extends DataAccessService<UsuarioSistema>{
+
+	private UsuarioSistema usuarioSistema;
+
 
 	public void geraBanco() {
-
+		
+		usuarioSistema = new UsuarioSistema();
+		
 		try {
+			
 			recriaSchema();
+			createUser();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void createUser() throws Exception{
+		
+		usuarioSistema.setNome("Admin");
+		usuarioSistema.setEmail("admin@admin.com.br");
+		usuarioSistema.setDataDeCriacao(Calendar.getInstance());
+		usuarioSistema.setSenha(MD5.criptografar("123Admin"));
+		
+		create(usuarioSistema);
 	}
 
 	public void recriaSchema() throws Exception {
@@ -33,9 +56,8 @@ public class GerarBD{
 		schemaExport.create(true, true);
 		System.out.println("Recriado!!!");
 	}
-	
+
 	public static void main(String[] args) {
-		
 		new GerarBD().geraBanco();
 	}
 

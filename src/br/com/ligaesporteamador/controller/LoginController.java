@@ -31,9 +31,9 @@ public class LoginController {
 		try {
 			
 			user = loginService.logar(userSistema);
-			if(true){
-			/*if (user.getEmail().equalsIgnoreCase(MD5.criptografar(userSistema.getEmail()))
-					&& user.getSenha().equals(userSistema.getSenha())) {*/
+			
+			if (user.getEmail().equalsIgnoreCase(MD5.criptografar(userSistema.getEmail()))
+					&& user.getSenha().equals(userSistema.getSenha())) {
 				
 				Util.redirect("welcome.html");
 				

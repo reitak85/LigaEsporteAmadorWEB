@@ -24,16 +24,23 @@
 	      				</p:selectOneMenu>
 	     			
 	      				<h:outputLabel value="Nome "/>
-	      				<p:inputText size="50" maxlength="100"/>
+	      				<p:inputText value="#{categoriaController.categoriaEsporte.nome}" size="50" maxlength="100"/>
 	      			
 	      				<h:outputLabel value="Descrição"/>
-	      				<p:inputTextarea cols="50" rows="3" autoResize="false"/>
+	      				<p:inputTextarea value="#{categoriaController.categoriaEsporte.descricao}" cols="50" rows="3" autoResize="false"/>
 	      				
 		      		</h:panelGrid>
 	      			<h:panelGrid>
-	      				<p:commandButton value="Salvar" style="margin-top:10px; margin-left:370px;"/>
-	      			</h:panelGrid>
+					<p:commandButton action="#{categoriaController.insertCategoria}"
+						update="cadastrarCategoria" value="Salvar"
+						style="margin-top:10px; margin-left:370px;" />
+				</h:panelGrid>
 	      		</h:form>
+	      		<h:panelGrid style="width:500px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
       		</div>
         </ui:define>
     </ui:composition>

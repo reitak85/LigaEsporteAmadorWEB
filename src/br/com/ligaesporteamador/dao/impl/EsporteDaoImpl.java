@@ -16,4 +16,9 @@ public class EsporteDaoImpl extends DataAccessService<Esporte> implements Esport
 		return createQuery("SELECT e FROM Esporte e");
 	}
 
+	@Override
+	public void insertEsporte(Esporte esporte) throws Exception {
+		create(esporte);
+	}
+
 }

@@ -7,5 +7,7 @@ import br.com.ligaesporteamador.model.Esporte;
 public interface EsporteDao {
 
 	List<Esporte> findEsporte() throws Exception;
+	
+	void insertEsporte(Esporte esporte) throws Exception;
 
 }

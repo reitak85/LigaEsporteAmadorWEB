@@ -84,12 +84,9 @@ public class TimeController {
 	}
 
 	public void findEnderecoByCep() {
-
 		try {
-
 			endereco.setCep(endereco.getCep().replace("-", ""));
 			endereco = enderecoService.findEnderecoByCep(endereco);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -97,16 +94,13 @@ public class TimeController {
 	
 	public void addJogador(){
 		try {
-
 			jogador.setTime(time);
 			jogadorService.insertJogador(jogador);
 			jogadors = jogadorService.findJogador(jogador);
 			jogador = null;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void insertTime(){
