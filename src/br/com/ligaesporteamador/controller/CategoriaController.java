@@ -32,6 +32,7 @@ public class CategoriaController extends CategoriaEsporteBO{
 	public CategoriaController() {
 		esportes = new ArrayList<Esporte>();
 		categoriaEsporte = new CategoriaEsporte();
+		categoriaEsporte.setEsporte(new Esporte());
 	}
 
 	@PostConstruct

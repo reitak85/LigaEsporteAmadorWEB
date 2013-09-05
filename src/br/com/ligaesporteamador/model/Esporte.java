@@ -20,7 +20,7 @@ public class Esporte extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ESPORTE_ID", length = 10)
-	private Long Id;
+	private Long id;
 
 	@Column(name = "NOME", length = 100)
 	private String nome;
@@ -32,11 +32,11 @@ public class Esporte extends BaseEntity {
 	private List<CategoriaEsporte> categoriaEsportes;
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNome() {

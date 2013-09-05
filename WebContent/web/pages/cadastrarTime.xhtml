@@ -34,7 +34,7 @@
 			<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:30px; width:600px;">
 
 				<h:outputLabel value="Esporte" />
-				<p:selectOneMenu id="esporte" value="#{timeController.time.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+				<p:selectOneMenu id="esporte" value="#{timeController.time.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;" >
 					<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
 					<f:selectItems value="#{timeController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"></f:selectItems>
 					<f:ajax event="change" render="categoria" listener="#{timeController.findCategoriaEsporte}"></f:ajax>
@@ -68,7 +68,7 @@
 				<p:inputText value="#{timeController.time.complementoEndereco.numero}"/>
 				
 				<h:outputLabel value="Complemento" />
-				<p:inputText value="#{timeController.time.complementoEndereco.complemento"/>
+				<p:inputText value="#{timeController.time.complementoEndereco.complemento}"/>
 				
 				<h:outputLabel value="Zona" />
 				<p:inputText id="zona" readonly="true" value="#{timeController.time.complementoEndereco.endereco.bairro.zona}"/>
