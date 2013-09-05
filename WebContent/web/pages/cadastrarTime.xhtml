@@ -48,30 +48,30 @@
 				</p:selectOneMenu>
 
 				<h:outputLabel value="Cep"/>
-				<p:inputMask mask="99999-999" value="#{timeController.endereco.cep}">
+				<p:inputMask mask="99999-999" value="#{timeController.time.complementoEndereco.endereco.cep}">
 					<f:ajax event="blur" render="logradouro bairro cidade uf zona" listener="#{timeController.findEnderecoByCep}"/>
 				</p:inputMask>
 				
 				<h:outputLabel value="Estado" />
-				<p:inputText id="uf" readonly="true" size="20" value="#{timeController.endereco.cidade.uf}"/>
+				<p:inputText id="uf" readonly="true" size="20" value="#{timeController.time.complementoEndereco.endereco.cidade.uf}"/>
 
 				<h:outputLabel value="Cidade" />
-				<p:inputText id="cidade" readonly="true" size="30" value="#{timeController.endereco.cidade.nome}"/>
+				<p:inputText id="cidade" readonly="true" size="30" value="#{timeController.time.complementoEndereco.endereco.cidade.nome}"/>
 
 				<h:outputLabel value="Bairro" />
-				<p:inputText id="bairro" readonly="true" size="30" value="#{timeController.endereco.bairro.nome}"/>
+				<p:inputText id="bairro" readonly="true" size="30" value="#{timeController.time.complementoEndereco.endereco.bairro.nome}"/>
 				
 				<h:outputLabel value="Logradouro" />
-				<p:inputText id="logradouro" readonly="true" size="40" value="#{timeController.endereco.nome}"/>
+				<p:inputText id="logradouro" readonly="true" size="40" value="#{timeController.time.complementoEndereco.endereco.nome}"/>
 				
 				<h:outputLabel value="Numero" />
-				<p:inputText />
+				<p:inputText value="#{timeController.time.complementoEndereco.numero}"/>
 				
 				<h:outputLabel value="Complemento" />
-				<p:inputText />
+				<p:inputText value="#{timeController.time.complementoEndereco.complemento"/>
 				
 				<h:outputLabel value="Zona" />
-				<p:inputText id="zona" readonly="true" value="#{timeController.endereco.bairro.zona}"/>
+				<p:inputText id="zona" readonly="true" value="#{timeController.time.complementoEndereco.endereco.bairro.zona}"/>
 
 				<h:outputLabel value="Nome do Time" />
 				<p:inputText id="nomeTime" size="40" maxlength="100" value="#{timeController.time.nomeDoTime}" />
@@ -158,7 +158,13 @@
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:80px; margin-top:10px;">
-				<p:commandButton id="modalDialogButton" value="Adicionar Jogador" onclick="dlg2.show();" type="button"/> 
+				<p:commandButton id="modalDialogButton" value="Adicionar Jogador" type="button"/> 
+			</h:panelGrid>
+			
+			<h:panelGrid style="width:800px;">
+      			<p:messages id="messages" autoUpdate="true" closable="true" >
+					<p:effect type="fade" event="load" speed="10000" />
+				</p:messages>
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
@@ -193,6 +199,11 @@
 		    		<p:commandButton value="Adicionar" action="#{timeController.addJogador}" update="dataJogador modalDialog"/>
 		    		<p:commandButton value="Cancelar" onclick="hide();" update="modalDialog"/>
 		    	</h:panelGrid>
+		    	<h:panelGrid style="width:600px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
 			</p:dialog> 
 	 	</h:form>  
 	</ui:define>

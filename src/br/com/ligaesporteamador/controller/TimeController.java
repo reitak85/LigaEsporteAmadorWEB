@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.ligaesporteamador.bo.TimeBO;
 import br.com.ligaesporteamador.model.CategoriaEsporte;
-import br.com.ligaesporteamador.model.ComplementoEndereco;
-import br.com.ligaesporteamador.model.Endereco;
 import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.model.Jogador;
 import br.com.ligaesporteamador.model.Time;
@@ -20,16 +19,17 @@ import br.com.ligaesporteamador.service.EnderecoService;
 import br.com.ligaesporteamador.service.EsporteService;
 import br.com.ligaesporteamador.service.JogadorService;
 import br.com.ligaesporteamador.service.TimeService;
+import br.com.ligaesporteamador.util.EnviarMensagem;
+import br.com.ligaesporteamador.util.Util;
+
 
 @Controller("timeController")
 @Scope("request")
-public class TimeController {
+public class TimeController extends TimeBO{
 
 	private Time time;
 	private Esporte esporte;
 	private CategoriaEsporte categoriaEsporte;
-	private Endereco endereco;
-	private ComplementoEndereco complementoEndereco;
 	private Jogador jogador;
 	private List<Jogador> jogadors;
 	private List<Esporte> esportes;
@@ -55,8 +55,6 @@ public class TimeController {
 		time = new Time();
 		esporte = new Esporte();
 		categoriaEsporte = new CategoriaEsporte();
-		endereco = new Endereco();
-		complementoEndereco = new ComplementoEndereco();
 		jogador = new Jogador();
 		esportes = new ArrayList<Esporte>();
 		categoriaEsportes = new ArrayList<CategoriaEsporte>();
@@ -85,8 +83,16 @@ public class TimeController {
 
 	public void findEnderecoByCep() {
 		try {
-			endereco.setCep(endereco.getCep().replace("-", ""));
-			endereco = enderecoService.findEnderecoByCep(endereco);
+			
+			time.getComplementoEndereco()
+					.getEndereco()
+					.setCep(time.getComplementoEndereco().getEndereco()
+							.getCep().replace("-", ""));
+
+			time.getComplementoEndereco().setEndereco(
+					enderecoService.findEnderecoByCep(time
+							.getComplementoEndereco().getEndereco()));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -94,10 +100,20 @@ public class TimeController {
 	
 	public void addJogador(){
 		try {
+			
 			jogador.setTime(time);
-			jogadorService.insertJogador(jogador);
-			jogadors = jogadorService.findJogador(jogador);
-			jogador = null;
+			jogador = insertJogadorValidation(jogador);
+			
+			String message = validaForm(jogador);
+			
+			if(!message.equals("")){
+				EnviarMensagem.atencao(message, null, false);
+			}else{
+				jogadorService.insertJogador(jogador);
+				jogadors = jogadorService.findJogador(jogador);
+				jogador = null;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,8 +121,27 @@ public class TimeController {
 	
 	public void insertTime(){
 		try {
-			time = timeService.insertTime(time);
+			
+			String message = validaFormTime(time);
+			time = insertTimeValidation(time);
+			
+			if(!message.equals("")){
+				EnviarMensagem.atencao(message, null, false);
+			}else{
+
+				if(time.getId() == null){
+					time = timeService.insertTime(time);
+					EnviarMensagem.informacao("Adicione o seu time.", null, false);
+				}else{
+					
+				}
+				
+				jogador = null;
+				Util.openModal("dlg2");
+			}
+			
 		} catch (Exception e) {
+			EnviarMensagem.erro("Erro ao cadastrar Time.", null, false);
 			e.printStackTrace();
 		}
 	}
@@ -149,22 +184,6 @@ public class TimeController {
 
 	public void setCategoriaEsporte(CategoriaEsporte categoriaEsporte) {
 		this.categoriaEsporte = categoriaEsporte;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public ComplementoEndereco getComplementoEndereco() {
-		return complementoEndereco;
-	}
-
-	public void setComplementoEndereco(ComplementoEndereco complementoEndereco) {
-		this.complementoEndereco = complementoEndereco;
 	}
 
 	public Jogador getJogador() {

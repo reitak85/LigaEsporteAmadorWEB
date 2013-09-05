@@ -7,6 +7,8 @@ import java.util.Calendar;
 
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 public class Util {
 
 	public static Calendar stringToCalendar(String data) throws ParseException {
@@ -20,5 +22,10 @@ public class Util {
 	
 	public static void redirect(String page) throws IOException{
 		FacesContext.getCurrentInstance().getExternalContext().redirect(page);  
+	}
+	
+	public static void openModal(String name){
+		RequestContext context = RequestContext.getCurrentInstance();  
+		context.execute(name + ".show();");
 	}
 }
