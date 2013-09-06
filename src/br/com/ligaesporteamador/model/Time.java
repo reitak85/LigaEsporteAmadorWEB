@@ -48,6 +48,10 @@ public class Time extends BaseEntity {
 	@JoinColumn(name = "COMPLEMENTO_ENDERECO_ID")
 	private ComplementoEndereco complementoEndereco;
 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "USUARIO_ID")
+	private Usuario usuario;
+
 	public Time() {
 		jogador = new ArrayList<Jogador>();
 		esporte = new Esporte();
@@ -117,6 +121,14 @@ public class Time extends BaseEntity {
 
 	public void setComplementoEndereco(ComplementoEndereco complementoEndereco) {
 		this.complementoEndereco = complementoEndereco;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

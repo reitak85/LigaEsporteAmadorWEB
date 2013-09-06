@@ -24,15 +24,14 @@ public class TimeServiceImpl implements TimeService{
 	}
 
 	@Override
-	public Time findTime(Time time) throws Exception {
-		return null;
+	public Time findTime(Long idTime) throws Exception {
+		return timeDao.findTime(idTime);
 	}
 
 	@Override
 	public void deleteTime(Time time) throws Exception {
 		
 	}
-
 
 
 }

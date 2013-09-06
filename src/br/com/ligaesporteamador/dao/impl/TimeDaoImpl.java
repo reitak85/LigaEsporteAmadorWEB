@@ -20,13 +20,12 @@ public class TimeDaoImpl extends DataAccessService<Time> implements TimeDao{
 	}
 
 	@Override
-	public Time findTime(Time time) throws Exception {
-		return find(time.getId());
+	public Time findTime(Long idTime) throws Exception {
+		return find(idTime);
 	}
 
 	@Override
 	public void deleteTime(Time time) throws Exception {
 		delete(time.getId());
 	}
-
 }

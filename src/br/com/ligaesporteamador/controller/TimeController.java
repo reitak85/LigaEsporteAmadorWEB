@@ -1,7 +1,9 @@
 package br.com.ligaesporteamador.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -14,11 +16,13 @@ import br.com.ligaesporteamador.model.CategoriaEsporte;
 import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.model.Jogador;
 import br.com.ligaesporteamador.model.Time;
+import br.com.ligaesporteamador.model.Usuario;
 import br.com.ligaesporteamador.service.CategoriaEsporteService;
 import br.com.ligaesporteamador.service.EnderecoService;
 import br.com.ligaesporteamador.service.EsporteService;
 import br.com.ligaesporteamador.service.JogadorService;
 import br.com.ligaesporteamador.service.TimeService;
+import br.com.ligaesporteamador.service.UsuarioService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 import br.com.ligaesporteamador.util.Util;
 
@@ -31,6 +35,7 @@ public class TimeController extends TimeBO{
 	private Esporte esporte;
 	private CategoriaEsporte categoriaEsporte;
 	private Jogador jogador;
+	private Usuario usuario;
 	private List<Jogador> jogadors;
 	private List<Esporte> esportes;
 	private List<CategoriaEsporte> categoriaEsportes;
@@ -49,9 +54,13 @@ public class TimeController extends TimeBO{
 	
 	@Autowired
 	private TimeService timeService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	public TimeController() {
 
+		usuario = new Usuario();
 		time = new Time();
 		esporte = new Esporte();
 		categoriaEsporte = new CategoriaEsporte();
@@ -122,8 +131,13 @@ public class TimeController extends TimeBO{
 	public void insertTime(){
 		try {
 			
-			String message = validaFormTime(time);
+			Long idUser = Long.parseLong(Util.getParameter("codUsuario"));
+			
+			usuario = usuarioService.findUsuario(idUser);
+			
+			time. setUsuario(usuario);
 			time = insertTimeValidation(time);
+			String message = validaFormTime(time);
 			
 			if(!message.equals("")){
 				EnviarMensagem.atencao(message, null, false);
@@ -142,6 +156,19 @@ public class TimeController extends TimeBO{
 			
 		} catch (Exception e) {
 			EnviarMensagem.erro("Erro ao cadastrar Time.", null, false);
+			e.printStackTrace();
+		}
+	}
+	
+	public void proximo(){
+		
+		try {
+		
+			Map<String, String> paramters = new HashMap<String, String>();
+			paramters.put("codTime", String.valueOf(time.getId()));
+			Util.sendPost("cadastrarQuadraCampo.html", paramters);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

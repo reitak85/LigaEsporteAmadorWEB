@@ -2,6 +2,8 @@ package br.com.ligaesporteamador.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -36,13 +38,18 @@ public class UsuarioController extends UsuarioBO{
 			try {
 			
 				usuario.setDataDeNascimento(Util.stringToCalendar(usuario.getDataNasc()));
-				usuarioService.insertUsuario(usuario);
-				Util.redirect("cadastrarTime.html");
+				usuario = usuarioService.insertUsuario(usuario);
+				
+				Map<String, String> paramters = new HashMap<String, String>();
+				paramters.put("codUsuario", String.valueOf(usuario.getId()));
+				
+				Util.sendPost("cadastrarTime.html", paramters);
 				
 			}catch (ParseException ep) { 
 				ep.printStackTrace();
 				EnviarMensagem.erro("Ocorreu um erro tente novamente mais tarde.", null, false);
 			}catch (IOException io) {
+				EnviarMensagem.erro("Ocorreu um erro tente novamente mais tarde.", null, false);
 				io.printStackTrace();
 			}catch (Exception e) {
 				e.printStackTrace();

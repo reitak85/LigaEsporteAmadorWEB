@@ -8,7 +8,7 @@ public interface UsuarioService {
 	
 	Usuario updateUsuario(Usuario usuario) throws Exception;
 	
-	Usuario findUsuario(Usuario usuario) throws Exception;
+	Usuario findUsuario(Long id) throws Exception;
 	
 	void deleteUsuario(Usuario usuario) throws Exception;
 }

@@ -8,7 +8,8 @@ public interface TimeDao {
 	
 	Time updateTime(Time time) throws Exception;
 	
-	Time findTime(Time time) throws Exception;
+	Time findTime(Long idTime) throws Exception;
 	
 	void deleteTime(Time time) throws Exception;
+
 }

@@ -24,9 +24,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
-	public Usuario findUsuario(Usuario usuario) throws Exception {
+	public Usuario findUsuario(Long id) throws Exception {
 		
-		return usuarioDao.findUsuario(usuario);
+		return usuarioDao.findUsuario(id);
 	}
 
 	@Override

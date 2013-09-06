@@ -20,8 +20,8 @@ public class UsuarioDaoImpl extends DataAccessService<Usuario> implements Usuari
 	}
 
 	@Override
-	public Usuario findUsuario(Usuario usuario) throws Exception {
-		return find(usuario.getId());
+	public Usuario findUsuario(Long id) throws Exception {
+		return find(id);
 	}
 
 	@Override

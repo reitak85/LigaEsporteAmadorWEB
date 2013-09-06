@@ -86,8 +86,12 @@
 			
 			<h:panelGrid columns="1" style="margin-left:135px; margin-top:20px; heigth:50px;">
 				<h:outputLabel value="Emblema do Time" />
-				<p:fileUpload mode="advanced" sizeLimit="100000"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+				<p:fileUpload mode="advanced" 
+							  sizeLimit="100000"
+							  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+							  label="Selecionar"
+							  uploadLabel="Atualizar"
+							  cancelLabel="Cancelar"/>
 			</h:panelGrid>
 			
 			<h:panelGrid style="width:800px; margin-top:20px; margin-left:auto; margin-right:auto;">
@@ -168,7 +172,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
-	    		<p:commandButton value="Proximo"/>
+	    		<p:commandButton action="#{timeController.proximo}" value="Proximo"/>
 	    	</h:panelGrid>
 		
 			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
@@ -200,7 +204,7 @@
 		    		<p:commandButton value="Cancelar" onclick="hide();" update="modalDialog"/>
 		    	</h:panelGrid>
 		    	<h:panelGrid style="width:600px;">
-	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+	      			<p:messages id="messages_popup" autoUpdate="true" closable="true" >
 						<p:effect type="fade" event="load" speed="10000" />
 					</p:messages>
 				</h:panelGrid>
