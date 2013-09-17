@@ -6,22 +6,48 @@
 	  <li><a href="#{request.contextPath}/web/admin/cadastrarCategoria.html">CADASTRAR CATEGORIA ESPORTE</a></li>
 	</ul>
   </li>
-  <li>
-	VISUALIZAR
+   <li>
+	FUTEBOL
 	<ul>
-	  <li><a href="#{request.contextPath}/web/admin/cadastrarEsporte.html">VISUALIZAR ESPORTE</a></li>
-	  <li><a href="#{request.contextPath}/web/admin/cadastrarCategoria.html">VIZUALIZAR CATEGORIA ESPORTE</a></li>
+		<li><a href="#{request.contextPath}/web/admin/futebol/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+		<li><a href="#{request.contextPath}/web/admin/futebol/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
 	</ul>
   </li>
   <li>
-	CADASTRAR CONTEUDO PORTAL
+	BASQUETE
 	<ul>
-		<li><a href="#">CADASTRAR CONTEUDO FUTEBOL</a></li>
-	  	<li><a href="#">CADASTRAR CONTEUDO BASQUETE</a></li>
-		<li><a href="#">CADASTRAR CONTEUDO TENIS</a></li>
-		<li><a href="#">CADASTRAR CONTEUDO VOLEI</a></li>
-		<li><a href="#">CADASTRAR CONTEUDO HANDEBOL</a></li>
-		<li><a href="#">CADASTRAR CONTEUDO RUGBY</a></li>
+	  	<li><a href="#{request.contextPath}/web/admin/basquete/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+	  	<li><a href="#{request.contextPath}/web/admin/basquete/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
 	</ul>
   </li>
+  <li>
+	TENIS
+	<ul>
+		<li><a href="#{request.contextPath}/web/admin/tenis/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+		<li><a href="#{request.contextPath}/web/admin/tenis/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
+	</ul>
+  </li>
+  <li>
+	VOLEI
+	<ul>
+		<li><a href="#{request.contextPath}/web/admin/volei/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+		<li><a href="#{request.contextPath}/web/admin/volei/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
+	</ul>
+  </li>
+  <li>
+	HANDEBOL
+	<ul>
+		<li><a href="#{request.contextPath}/web/admin/handebol/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+		<li><a href="#{request.contextPath}/web/admin/handebol/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
+	</ul>
+  </li>
+   <li>
+	RUGBY
+	<ul>
+		<li><a href="#{request.contextPath}/web/admin/rugby/cadastrarNoticia.html">CADASTRAR NOTICIA</a></li>
+		<li><a href="#{request.contextPath}/web/admin/rugby/cadastrarVideos.html">CADASTRAR RUGBY</a></li>
+	</ul>
+  </li>
+  
+  
 </ul>
