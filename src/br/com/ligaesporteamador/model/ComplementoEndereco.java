@@ -32,6 +32,10 @@ public class ComplementoEndereco  extends BaseEntity{
 	@JoinColumn(name = "ENDERECO_ID", nullable = false)
 	private Endereco endereco;
 
+	public ComplementoEndereco() {
+		endereco = new Endereco();
+	}
+	
 	public Long getId() {
 		return id;
 	}

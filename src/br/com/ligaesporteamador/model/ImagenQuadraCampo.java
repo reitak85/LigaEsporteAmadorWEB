@@ -30,7 +30,7 @@ public class ImagenQuadraCampo extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUADRA_CAMPO_ID")
-	private QuandraCampo quandraCampo;
+	private QuadraCampo quandraCampo;
 
 	public Long getId() {
 		return id;
@@ -64,11 +64,11 @@ public class ImagenQuadraCampo extends BaseEntity {
 		this.descricao = descricao;
 	}
 
-	public QuandraCampo getQuandraCampo() {
+	public QuadraCampo getQuandraCampo() {
 		return quandraCampo;
 	}
 
-	public void setQuandraCampo(QuandraCampo quandraCampo) {
+	public void setQuandraCampo(QuadraCampo quandraCampo) {
 		this.quandraCampo = quandraCampo;
 	}
 

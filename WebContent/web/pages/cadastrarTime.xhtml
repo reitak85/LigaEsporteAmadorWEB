@@ -162,7 +162,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:80px; margin-top:10px;">
-				<p:commandButton id="modalDialogButton" value="Adicionar Jogador" type="button"/> 
+				<p:commandButton id="modalDialogButton" action="#{timeController.insertTime}" value="Adicionar Jogador"/> 
 			</h:panelGrid>
 			
 			<h:panelGrid style="width:800px;">
@@ -173,6 +173,7 @@
 			
 			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
 	    		<p:commandButton action="#{timeController.proximo}" value="Proximo"/>
+	    		<f:param name="timeId" value="#{timeController.time.id}"/>
 	    	</h:panelGrid>
 		
 			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  

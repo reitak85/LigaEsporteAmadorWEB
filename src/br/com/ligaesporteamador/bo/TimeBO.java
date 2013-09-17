@@ -30,9 +30,13 @@ public class TimeBO extends JogadorBO{
 		return message;
 	}
 	
-	public Time insertTimeValidation(Time time) throws Exception{
-
+	public Time insertDateValidation(Time time) throws Exception{
 		time.setDataDeCriacao(Calendar.getInstance());
+		return time;
+	}
+	
+	public Time updatetDateValidation(Time time) throws Exception{
+		time.setDataDeAtualizacao(Calendar.getInstance());
 		return time;
 	}
 }

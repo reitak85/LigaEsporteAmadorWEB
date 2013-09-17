@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -51,6 +52,10 @@ public class Time extends BaseEntity {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "USUARIO_ID")
 	private Usuario usuario;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "QUADRA_COMPO_ID")
+	private QuadraCampo quadraCampo;
 
 	public Time() {
 		jogador = new ArrayList<Jogador>();
@@ -129,6 +134,14 @@ public class Time extends BaseEntity {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public QuadraCampo getQuadraCampo() {
+		return quadraCampo;
+	}
+
+	public void setQuadraCampo(QuadraCampo quadraCampo) {
+		this.quadraCampo = quadraCampo;
 	}
 
 }

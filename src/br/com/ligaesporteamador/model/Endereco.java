@@ -33,6 +33,11 @@ public class Endereco {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "BAIRRO_ID")
 	private Bairro bairro;
+	
+	public Endereco() {
+		cidade = new Cidade();
+		bairro = new Bairro();
+	}
 
 	public Long getId() {
 		return id;

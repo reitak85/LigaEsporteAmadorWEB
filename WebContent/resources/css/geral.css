@@ -488,21 +488,24 @@ img, object, embed, video, div {
 }
 
 .login .form-login ul li #login1_txtSenha {
+	
+	margin-top:15px;
 }
 
 .login .form-login ul li #login1_txtUsuario {
+	margin-top:15px;
 }
 
 .login .form-login {
 	color: #666666;
 	float: left;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
 .login .form-login input {
 	height: 28px;
-	width: 130px;
+	width: 100px;
 	border-radius: 5px 5px 5px 5px;
 	margin-left: 10px;
 	font-size: 12px;

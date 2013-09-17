@@ -1,5 +1,7 @@
 package br.com.ligaesporteamador.bo;
 
+import java.util.Calendar;
+
 import org.apache.commons.lang.StringUtils;
 
 import br.com.ligaesporteamador.model.Usuario;
@@ -58,6 +60,17 @@ public class UsuarioBO {
 		}
 
 		return message;
+	}
+	
+	
+	public Usuario insertDateValidation(Usuario usuario) throws Exception{
+		usuario.setDataDeCriacao(Calendar.getInstance());
+		return usuario;
+	}
+	
+	public Usuario updateDateValidation(Usuario usuario) throws Exception{
+		usuario.setDataDeAtualizacao(Calendar.getInstance());
+		return usuario;
 	}
 
 }

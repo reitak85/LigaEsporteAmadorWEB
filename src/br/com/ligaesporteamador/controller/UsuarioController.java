@@ -2,8 +2,6 @@ package br.com.ligaesporteamador.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -13,6 +11,7 @@ import br.com.ligaesporteamador.bo.UsuarioBO;
 import br.com.ligaesporteamador.model.Usuario;
 import br.com.ligaesporteamador.service.UsuarioService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
+import br.com.ligaesporteamador.util.MD5;
 import br.com.ligaesporteamador.util.Util;
 
 @Controller("usuarioController")
@@ -37,13 +36,17 @@ public class UsuarioController extends UsuarioBO{
 		}else{
 			try {
 			
+				if(usuario.getId() != null){
+					usuario = updateDateValidation(usuario);
+				}else{
+					usuario = insertDateValidation(usuario);
+				}
+				
 				usuario.setDataDeNascimento(Util.stringToCalendar(usuario.getDataNasc()));
+				usuario.setSenha(MD5.criptografar(usuario.getSenha()));
 				usuario = usuarioService.insertUsuario(usuario);
 				
-				Map<String, String> paramters = new HashMap<String, String>();
-				paramters.put("codUsuario", String.valueOf(usuario.getId()));
-				
-				Util.sendPost("cadastrarTime.html", paramters);
+				Util.redirect("cadastrarTime.html");
 				
 			}catch (ParseException ep) { 
 				ep.printStackTrace();
@@ -57,18 +60,6 @@ public class UsuarioController extends UsuarioBO{
 			}
 		}
 		
-	}
-
-	public void updateUsuario() {
-
-	}
-
-	public void findUsuario() {
-
-	}
-
-	public void deleteUsuario() {
-
 	}
 
 	public Usuario getUsuario() {

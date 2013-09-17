@@ -1,9 +1,7 @@
 package br.com.ligaesporteamador.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -26,10 +24,9 @@ import br.com.ligaesporteamador.service.UsuarioService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 import br.com.ligaesporteamador.util.Util;
 
-
 @Controller("timeController")
 @Scope("request")
-public class TimeController extends TimeBO{
+public class TimeController extends TimeBO {
 
 	private Time time;
 	private Esporte esporte;
@@ -42,7 +39,7 @@ public class TimeController extends TimeBO{
 
 	@Autowired
 	private EsporteService esporteService;
-	
+
 	@Autowired
 	private JogadorService jogadorService;
 
@@ -51,10 +48,10 @@ public class TimeController extends TimeBO{
 
 	@Autowired
 	private EnderecoService enderecoService;
-	
+
 	@Autowired
 	private TimeService timeService;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 
@@ -92,7 +89,7 @@ public class TimeController extends TimeBO{
 
 	public void findEnderecoByCep() {
 		try {
-			
+
 			time.getComplementoEndereco()
 					.getEndereco()
 					.setCep(time.getComplementoEndereco().getEndereco()
@@ -101,73 +98,72 @@ public class TimeController extends TimeBO{
 			time.getComplementoEndereco().setEndereco(
 					enderecoService.findEnderecoByCep(time
 							.getComplementoEndereco().getEndereco()));
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void addJogador(){
+
+	public void addJogador() {
 		try {
 			
-			jogador.setTime(time);
-			jogador = insertJogadorValidation(jogador);
-			
 			String message = validaForm(jogador);
-			
-			if(!message.equals("")){
+
+			if (!message.equals("")) {
 				EnviarMensagem.atencao(message, null, false);
-			}else{
+			} else {
+				
+				jogador.setTime(time);
+				jogador = insertDateValidation(jogador);
+				
 				jogadorService.insertJogador(jogador);
 				jogadors = jogadorService.findJogador(jogador);
 				jogador = null;
+				
+				EnviarMensagem.informacao("Jogador incluido com sucesso!", null, false);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void insertTime(){
-		try {
-			
-			Long idUser = Long.parseLong(Util.getParameter("codUsuario"));
-			
-			usuario = usuarioService.findUsuario(idUser);
-			
-			time. setUsuario(usuario);
-			time = insertTimeValidation(time);
-			String message = validaFormTime(time);
-			
-			if(!message.equals("")){
-				EnviarMensagem.atencao(message, null, false);
-			}else{
 
-				if(time.getId() == null){
-					time = timeService.insertTime(time);
-					EnviarMensagem.informacao("Adicione o seu time.", null, false);
-				}else{
-					
+	public void insertTime() {
+
+		String message = validaFormTime(time);
+
+		if (!message.equals("")) {
+			EnviarMensagem.atencao(message, null, false);
+		} else {
+			try {
+
+				Long idUser = Long.parseLong(Util.getParameter("usuarioId"));
+				usuario = usuarioService.findUsuario(idUser);
+				time.setUsuario(usuario);
+
+				if (time.getId() != null) {
+					time = updatetDateValidation(time);
+				} else {
+					time = insertDateValidation(time);
 				}
-				
+
+				time = timeService.insertTime(time);
+				EnviarMensagem.informacao("Adicione o seu time.", null, false);
+
 				jogador = null;
 				Util.openModal("dlg2");
-			}
-			
-		} catch (Exception e) {
-			EnviarMensagem.erro("Erro ao cadastrar Time.", null, false);
-			e.printStackTrace();
-		}
-	}
-	
-	public void proximo(){
-		
-		try {
-		
-			Map<String, String> paramters = new HashMap<String, String>();
-			paramters.put("codTime", String.valueOf(time.getId()));
-			Util.sendPost("cadastrarQuadraCampo.html", paramters);
 
+			} catch (Exception e) {
+				EnviarMensagem.erro("Erro ao cadastrar Time.", null, false);
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void proximo() {
+		try {
+			Util.redirect("cadastrarQuadraCampo.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

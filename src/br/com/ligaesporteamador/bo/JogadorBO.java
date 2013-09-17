@@ -26,9 +26,13 @@ public class JogadorBO {
 		return message;
 	}
 
-	public Jogador insertJogadorValidation(Jogador jogador) throws Exception{
-
+	public Jogador insertDateValidation(Jogador jogador) throws Exception{
 		jogador.setDataDeCriacao(Calendar.getInstance());
+		return jogador;
+	}
+
+	public Jogador updateDateValidation(Jogador jogador) throws Exception{
+		jogador.setDataDeAtualizacao(Calendar.getInstance());
 		return jogador;
 	}
 

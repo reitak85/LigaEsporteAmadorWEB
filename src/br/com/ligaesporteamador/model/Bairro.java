@@ -29,6 +29,10 @@ public class Bairro {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "CIDADE_ID")
 	private Cidade cidade;
+	
+	public Bairro() {
+		cidade = new Cidade();
+	}
 
 	public Long getId() {
 		return id;

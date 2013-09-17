@@ -73,13 +73,22 @@
 			 		<h:outputText value="Concordo com o recebimento de SMS da Liga Esporte Amador." />
 			 	
 			 		<p:selectBooleanCheckbox id="termo" value="#{usuarioController.usuario.termoContrato}"/>
-			 		<h:outputText value="Concordo com os Termos de Serviço e Política de Privacidade do Liga Esporte Amador " />
+			 		<h:outputLink>Concordo com os Termos de Serviço e Política de Privacidade do Liga Esporte Amador.</h:outputLink>  
 			 		
 			 	</h:panelGrid>
 			 	
 			 	<h:panelGrid columns="1" style="margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:30px;">
-					<p:commandButton value="Proximo" action="#{usuarioController.insertUsuario}"/>
+					<p:commandButton value="Proximo" action="#{usuarioController.insertUsuario}" rendered="#{usuarioController.usuario.id == null}">
+						<f:param name="usuarioId" value="#{usuarioController.usuario.id}"/>
+					</p:commandButton>
 			 	</h:panelGrid>
+			 	
+			 	<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
+	    		<p:commandButton  value="Continuar" rendered="#{usuarioController.usuario.id != null}">
+	    			<f:param name="usuarioId" value="#{usuarioController.usuario.id}"/>
+	    		</p:commandButton>
+	    		
+	    	</h:panelGrid>
 			 	
 			 </h:form>
 			 <h:panelGrid>
