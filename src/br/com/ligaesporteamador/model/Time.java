@@ -144,4 +144,5 @@ public class Time extends BaseEntity {
 		this.quadraCampo = quadraCampo;
 	}
 
+	
 }

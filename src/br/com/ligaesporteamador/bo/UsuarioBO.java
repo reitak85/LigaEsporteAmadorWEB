@@ -5,6 +5,7 @@ import java.util.Calendar;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.ligaesporteamador.model.Usuario;
+import br.com.ligaesporteamador.util.ValidaCPF;
 
 public class UsuarioBO {
 
@@ -32,7 +33,9 @@ public class UsuarioBO {
 
 			message = "Por favor preencher o campo CPF !";
 
-		} else if (StringUtils.isBlank(usuario.getSexo())) {
+		}else if(!ValidaCPF.isCPF(usuario.getCpf().replace(".", "").replace("-", ""))){ 
+		
+		}else if (StringUtils.isBlank(usuario.getSexo())) {
 
 			message = "Por favor preencher o campo Sexo !";
 

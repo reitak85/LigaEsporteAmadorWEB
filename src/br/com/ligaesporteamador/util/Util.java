@@ -29,6 +29,11 @@ public class Util {
 		context.execute(name + ".show();");
 	}
 	
+	public static void closeModal(String name) throws Exception {
+		RequestContext context = RequestContext.getCurrentInstance();  
+		context.execute(name + ".hide();");
+	}
+	
 	public static String getParameter(String name){
 		String value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(name);
 		return value;

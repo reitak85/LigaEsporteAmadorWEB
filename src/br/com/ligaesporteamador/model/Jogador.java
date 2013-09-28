@@ -40,6 +40,7 @@ public class Jogador extends BaseEntity {
 	
 	public Jogador() {
 		contato = new Contato();
+		time = new Time();
 	}
 
 	public Long getId() {

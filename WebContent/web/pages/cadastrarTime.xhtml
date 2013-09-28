@@ -36,15 +36,14 @@
 				<h:outputLabel value="Esporte" />
 				<p:selectOneMenu id="esporte" value="#{timeController.time.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;" >
 					<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-					<f:selectItems value="#{timeController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"></f:selectItems>
-					<f:ajax event="change" render="categoria" listener="#{timeController.findCategoriaEsporte}"></f:ajax>
+					<f:selectItems value="#{timeController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"/>
+					<p:ajax event="change" update="categoria" listener="#{timeController.findCategoriaEsporte}"/>
 				</p:selectOneMenu>
 
-
 				<h:outputLabel value="Categoria" />
-				<p:selectOneMenu id="categoria" value="#{timeController.time.categoria.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+				<p:selectOneMenu id="categoria" value="#{timeController.time.categoria.id}" styleClass="alingLeft" style="width:150px; font-size:12px;" >
 					<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-					<f:selectItems value="#{timeController.categoriaEsportes}" var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria.id}" />
+					<f:selectItems value="#{timeController.categoriaEsportes}" var="categ" itemLabel="#{categ.nome}" itemValue="#{categ.id}"/>
 				</p:selectOneMenu>
 
 				<h:outputLabel value="Cep"/>
@@ -149,14 +148,14 @@
 						<f:facet name="header">
 							<h:outputText value="Alterar" />
 						</f:facet>
-						<p:commandButton icon="ui-icon-edit"/>
+						<p:commandButton icon="ui-icon-pencil"/>
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<p:commandButton icon="ui-icon-edit"/>
+						<p:commandButton icon="ui-icon-close"/>
 					</p:column>
 				</p:dataTable>
 			</h:panelGrid>
@@ -165,7 +164,7 @@
 				<p:commandButton id="modalDialogButton" action="#{timeController.insertTime}" value="Adicionar Jogador"/> 
 			</h:panelGrid>
 			
-			<h:panelGrid style="width:800px;">
+			<h:panelGrid style="width:800px; margin-right:auto; margin-left:auto;">
       			<p:messages id="messages" autoUpdate="true" closable="true" >
 					<p:effect type="fade" event="load" speed="10000" />
 				</p:messages>
@@ -179,30 +178,30 @@
 			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
 		    	<h:panelGrid columns="2" styleClass="alingRigth">
 		    		<h:outputLabel value="Nome"/>
-		    		<p:inputText id="nome" size="40" maxlength="100" value="#{timeController.jogador.nome}"/>
+		    		<p:inputText id="nome" size="40" maxlength="100" value="#{timeController.jogadores.nome}"/>
 		    		
 		    		<h:outputLabel value="Email"/>
-		    		<p:inputText id="email" size="40" maxlength="100" value="#{timeController.jogador.contato.email}"/>
+		    		<p:inputText id="email" size="40" maxlength="100" value="#{timeController.jogadores.contato.email}"/>
 		    		
 		    		<h:outputLabel value="Posicao"/>
-		    		<p:inputText id="posicao" size="30" maxlength="50" value="#{timeController.jogador.posicao}"/>
+		    		<p:inputText id="posicao" size="30" maxlength="50" value="#{timeController.jogadores.posicao}"/>
 		    		
 		    		<h:outputLabel value="Pra que time torce ?"/>
-		    		<p:inputText id="timeTorce" size="30" maxlength="50" value="#{timeController.jogador.timeTorce}"/>
+		    		<p:inputText id="timeTorce" size="30" maxlength="50" value="#{timeController.jogadores.timeTorce}"/>
 		    		
 		    		<h:outputLabel value="Tel. Celular"/>
-		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneCelular}"/>
+		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogadores.contato.telefoneCelular}"/>
 		    		
 		    		<h:outputLabel value="Tel. Residencial"/>
-		    		<p:inputMask mask="(99) 9999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneResidencial}"/>
+		    		<p:inputMask mask="(99) 9999 - 9999" size="20" value="#{timeController.jogadores.contato.telefoneResidencial}"/>
 		    		
 		    		<h:outputLabel value="Tel. Comercial"/>
-		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogador.contato.telefoneComercial}"/>
+		    		<p:inputMask mask="(99) 99999 - 9999" size="20" value="#{timeController.jogadores.contato.telefoneComercial}"/>
 		    		
 		    	</h:panelGrid>
 		    	<h:panelGrid columns="2" style="margin-right:auto; margin-left:auto; margin-top:15px;">
-		    		<p:commandButton value="Adicionar" action="#{timeController.addJogador}" update="dataJogador modalDialog"/>
-		    		<p:commandButton value="Cancelar" onclick="hide();" update="modalDialog"/>
+		    		<p:commandButton value="Adicionar" action="#{timeController.saveJogador}" update="dataJogador modalDialog"/>
+		    		<p:commandButton value="Cancelar"  action="#{timeController.cancelJogador}" update="modalDialog"/>
 		    	</h:panelGrid>
 		    	<h:panelGrid style="width:600px;">
 	      			<p:messages id="messages_popup" autoUpdate="true" closable="true" >

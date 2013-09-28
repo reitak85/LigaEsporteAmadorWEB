@@ -37,10 +37,15 @@ public abstract class DataAccessService<T> {
 
 	@Transactional
     public T create(T t) {
-		this.em.getTransaction().begin();
-    	t = this.em.merge(t);
+		
+		if(!this.em.getTransaction().isActive()){
+			this.em.getTransaction().begin();
+		}
+    	
+		t = this.em.merge(t);
         this.em.flush();
         this.em.getTransaction().commit();
+        
         return t;
     }
 

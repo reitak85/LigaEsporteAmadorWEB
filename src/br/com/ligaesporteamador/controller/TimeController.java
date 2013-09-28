@@ -25,13 +25,13 @@ import br.com.ligaesporteamador.util.EnviarMensagem;
 import br.com.ligaesporteamador.util.Util;
 
 @Controller("timeController")
-@Scope("request")
+@Scope("session")
 public class TimeController extends TimeBO {
 
 	private Time time;
 	private Esporte esporte;
 	private CategoriaEsporte categoriaEsporte;
-	private Jogador jogador;
+	private Jogador jogadores;
 	private Usuario usuario;
 	private List<Jogador> jogadors;
 	private List<Esporte> esportes;
@@ -61,7 +61,7 @@ public class TimeController extends TimeBO {
 		time = new Time();
 		esporte = new Esporte();
 		categoriaEsporte = new CategoriaEsporte();
-		jogador = new Jogador();
+		jogadores = new Jogador();
 		esportes = new ArrayList<Esporte>();
 		categoriaEsportes = new ArrayList<CategoriaEsporte>();
 		jogadors = new ArrayList<Jogador>();
@@ -103,24 +103,36 @@ public class TimeController extends TimeBO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void cancelJogador(){
+		try {
+			jogadores = new Jogador();
+			Util.closeModal("dlg2");
+		} catch (Exception e) {
+			EnviarMensagem.erro("Erro ao fechar o popup.", null, false);
+			e.printStackTrace();
+		}
+	}
 
-	public void addJogador() {
+	public void saveJogador() {
 		try {
 			
-			String message = validaForm(jogador);
+			String message = validaForm(jogadores);
 
 			if (!message.equals("")) {
 				EnviarMensagem.atencao(message, null, false);
 			} else {
 				
-				jogador.setTime(time);
-				jogador = insertDateValidation(jogador);
+				jogadores.setTime(time);
+				jogadores = insertDateValidation(jogadores);
 				
-				jogadorService.insertJogador(jogador);
-				jogadors = jogadorService.findJogador(jogador);
-				jogador = null;
+				jogadorService.insertJogador(jogadores);
+				jogadors = jogadorService.findJogador(jogadores);
+				jogadores = new Jogador();
 				
 				EnviarMensagem.informacao("Jogador incluido com sucesso!", null, false);
+				
+				Util.closeModal("dlg2");
 			}
 
 		} catch (Exception e) {
@@ -150,7 +162,6 @@ public class TimeController extends TimeBO {
 				time = timeService.insertTime(time);
 				EnviarMensagem.informacao("Adicione o seu time.", null, false);
 
-				jogador = null;
 				Util.openModal("dlg2");
 
 			} catch (Exception e) {
@@ -209,14 +220,6 @@ public class TimeController extends TimeBO {
 		this.categoriaEsporte = categoriaEsporte;
 	}
 
-	public Jogador getJogador() {
-		return jogador;
-	}
-
-	public void setJogador(Jogador jogador) {
-		this.jogador = jogador;
-	}
-
 	public List<Jogador> getJogadors() {
 		return jogadors;
 	}
@@ -225,4 +228,20 @@ public class TimeController extends TimeBO {
 		this.jogadors = jogadors;
 	}
 
+	public Jogador getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(Jogador jogadores) {
+		this.jogadores = jogadores;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }

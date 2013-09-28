@@ -62,4 +62,23 @@ public class CategoriaEsporte extends BaseEntity{
 		this.esporte = esporte;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof CategoriaEsporte))
+			return false;
+		CategoriaEsporte other = (CategoriaEsporte) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+
+
 }

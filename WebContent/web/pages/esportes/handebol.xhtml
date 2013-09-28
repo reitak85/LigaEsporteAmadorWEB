@@ -12,8 +12,18 @@
 		</div>
 
 		<div id="menu2">
-			
+			<div class="menuInternoInterior">
+				<ui:include src="../../../web/menu/menuInterno.jsp" />
+			</div>
 		</div>
+		
+		<div style="margin-top: 10px; margin-bottom: 10px; z-index:1; "> 
+			<p:galleria value="#{galleriaController.images}" var="image"
+				panelWidth="500" panelHeight="400"  showFilmstrip="true" showCaptions="true" showOverlays="true" filmstripPosition="true" >
+				<p:graphicImage value="/resources/futebol/#{image}" alt="Image Description for #{image}" title="Liga Esporte Amador" width="500" height="400" />
+			</p:galleria>
+		</div>
+
 
 	</ui:define>
 </ui:composition>

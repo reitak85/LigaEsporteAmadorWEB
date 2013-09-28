@@ -18,11 +18,11 @@ import br.com.ligaesporteamador.util.EnviarMensagem;
 
 @Controller("categoriaController")
 @Scope("request")
-public class CategoriaController extends CategoriaEsporteBO{
+public class CategoriaController extends CategoriaEsporteBO {
 
 	@Autowired
 	private EsporteService esporteService;
-	
+
 	@Autowired
 	private CategoriaEsporteService categoriaEsporteService;
 
@@ -43,21 +43,24 @@ public class CategoriaController extends CategoriaEsporteBO{
 			e.printStackTrace();
 		}
 	}
-	
-	public void insertCategoria(){
+
+	public void insertCategoria() {
 		try {
 
 			categoriaEsporte = insertCategoriaValidation(categoriaEsporte);
 			String message = validationForm(categoriaEsporte);
 
-			if(!message.equals("")){
+			if (!message.equals("")) {
 				EnviarMensagem.atencao(message, null, false);
-			}else{
+			} else {
 
-				categoriaEsporteService.insertCategoriaEsporte(categoriaEsporte);
-				EnviarMensagem.informacao("Categoria cadastrada com sucesso.", null, false);
+				categoriaEsporteService
+						.insertCategoriaEsporte(categoriaEsporte);
+				EnviarMensagem.informacao("Categoria cadastrada com sucesso.",
+						null, false);
+
 			}
-			
+
 		} catch (Exception e) {
 			EnviarMensagem.erro("Erro ao cadastrar categoria.", null, false);
 			e.printStackTrace();
