@@ -9,28 +9,29 @@
 
       		<div style="margin-top: 100px; margin-bottom: 100px; margin-left: 225px;">
       		
-      			<h:form>
+      			<h:form id="noticiaForm">
       				<h:panelGrid columns="2" styleClass="alingRigth">
       				
-      					<h:outputLabel value="Esporter"/>
-      					<p:selectOneMenu style="width:200px;" styleClass="alingLeft">
-      						<f:selectItem itemLabel="Selecione.." noSelectionOption="true"/>
-      					</p:selectOneMenu>
+      					<h:outputLabel value="Esporte:"/>
+      					<p:selectOneMenu value="#{noticiaController.noticia.esporte.id}" style="width:200px;" styleClass="alingLeft" >
+	      					<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+	      					<f:selectItems value="#{noticiaController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"/>
+	      				</p:selectOneMenu>
       				
-      					<h:outputLabel value="Titulo" />
-      					<p:inputText size="50" maxlength="70"/>
+      					<h:outputLabel value="Titulo:" />
+      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Sub-Titulo" />
-      					<p:inputText size="50" maxlength="70"/>
+      					<h:outputLabel value="Sub-Titulo:" />
+      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Creditos da Imagem" />
-      					<p:inputText size="50" maxlength="70"/>
+      					<h:outputLabel value="Creditos da Imagem:" />
+      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Legenda da Imagem" />
-      					<p:inputText size="50" maxlength="70"/>
+      					<h:outputLabel value="Legenda da Imagem:" />
+      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Data do Notícia" />
-      					<p:calendar pattern="dd/MM/yyyy"/>
+      					<h:outputLabel value="Data do Notícia:" />
+      					<p:calendar value="#{noticiaController.esportes}" pattern="dd/MM/yyyy"/>
       				
       				</h:panelGrid>
       				
@@ -45,21 +46,26 @@
 					</h:panelGrid>
 					
 					<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:50px; margin-left:20px;">
-						<h:outputLabel value="Notícias parte I"/>
+						<h:outputLabel value="#{noticiaController.esportes}" value="Notícias parte I"/>
 						<p:inputTextarea cols="80" rows="6" autoResize="false"  maxlength="500"/>
 						
 						<h:outputLabel value="Notícias parte II"/>
-						<p:inputTextarea cols="80" rows="6" autoResize="false" maxlength="500"/>
+						<p:inputTextarea value="#{noticiaController.esportes}" cols="80" rows="6" autoResize="false" maxlength="500"/>
 						
 						<h:outputLabel value="Notícias parte III"/>
-						<p:inputTextarea cols="80" rows="6" autoResize="false" maxlength="500"/>
+						<p:inputTextarea value="#{noticiaController.esportes}" cols="80" rows="6" autoResize="false" maxlength="500"/>
 					</h:panelGrid>
 					
 					<h:panelGrid style="margin-top:20px; margin-left:auto; margin-right:auto;">
-						<p:commandButton  value="Gravar"/>
+						<p:commandButton action="#{noticiaController.insertNoticia}" update="noticiaForm"  value="Gravar"/>
 					</h:panelGrid>
 					
       			</h:form>
+      			<h:panelGrid style="width:500px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
       		</div>
         </ui:define>
     </ui:composition>

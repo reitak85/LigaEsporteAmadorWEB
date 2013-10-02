@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 
 @Table(name = "NOTICIA_IMAGEM")
-public class Noticia {
+public class Noticia extends BaseEntity {
 
 	@Id
 	@GeneratedValue
