@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	 <div id="div1" >
+                <img src="../../resources/img/cadastro_usuario.fw.png"/>
+             </div>
+             <div id="menu2">
+				<div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>	             
+             </div>
+             <div class="topCad">
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_01.fw.png"/>
+             	<font>Cadastrar Usuário</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_02.fw.png"/>
+             	<font>Cadastrar Time</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png"/>
+             	<font>Cadastrar Quadra/Campo</font>
+             </div>
+			
+			 <h:form>
+			 	
+			 	<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:30px;">
+			 		
+			 		<p:selectBooleanCheckbox id="mensal" value=""/>
+			 		<h:outputText value="Plano Mensal 1X  Visa, MasterCard" />
+			 		
+			 		<p:selectBooleanCheckbox id="Trimestral" value=""/>
+			 		<h:outputText value="Plano Trimestral 2X  Visa, MasterCard" />
+			 		
+			 		<p:selectBooleanCheckbox id="Semestral" value=""/>
+			 		<h:outputText value="Plano Semestral 4X  Visa, MasterCard" />
+			 		
+			 		<p:selectBooleanCheckbox id="Anual" value=""/>
+			 		<h:outputText value="Plano Anual 8X Visa, MasterCard" />
+			 		
+			 	</h:panelGrid>
+			 	
+			 </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

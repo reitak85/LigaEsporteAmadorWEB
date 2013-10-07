@@ -34,7 +34,7 @@ public class UsuarioBO {
 			message = "Por favor preencher o campo CPF !";
 
 		}else if(!ValidaCPF.isCPF(usuario.getCpf().replace(".", "").replace("-", ""))){ 
-		
+			message = "CPF Invalido !";
 		}else if (StringUtils.isBlank(usuario.getSexo())) {
 
 			message = "Por favor preencher o campo Sexo !";

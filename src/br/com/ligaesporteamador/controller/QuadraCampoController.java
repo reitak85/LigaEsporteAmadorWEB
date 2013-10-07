@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.ligaesporteamador.model.Time;
 import br.com.ligaesporteamador.service.TimeService;
-import br.com.ligaesporteamador.util.Util;
 
 public class QuadraCampoController {
 
@@ -21,8 +20,7 @@ public class QuadraCampoController {
 
 		try {
 
-			Long idTime = Long.parseLong(Util.getParameter("codTime"));
-			time = timeService.findTime(idTime);
+//			time = timeService.findTime(idTime);
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

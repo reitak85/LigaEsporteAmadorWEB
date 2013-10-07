@@ -16,8 +16,8 @@ public class JogadorServiceImpl implements JogadorService{
 	JogadorDao jogadorDao;
 	
 	@Override
-	public void insertJogador(Jogador jogador) throws Exception {
-		jogadorDao.insertJogador(jogador);
+	public Jogador insertJogador(Jogador jogador) throws Exception {
+		return jogadorDao.insertJogador(jogador);
 	}
 
 	@Override

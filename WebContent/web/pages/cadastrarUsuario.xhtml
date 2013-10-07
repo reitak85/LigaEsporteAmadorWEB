@@ -85,13 +85,13 @@
 			 	
 			 	<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
 	    		<p:commandButton  value="Continuar" rendered="#{usuarioController.usuario.id != null}">
-	    			<f:param name="usuarioId" value="#{usuarioController.usuario.id}"/>
+	    			<f:attribute name="usuarioId" value="#{usuarioController.usuario.id}"/>
 	    		</p:commandButton>
 	    		
 	    	</h:panelGrid>
 			 	
 			 </h:form>
-			 <h:panelGrid>
+			 <h:panelGrid width="800">
 				 <p:messages id="messages" autoUpdate="true" closable="true" >
 					<p:effect type="fade" event="load" speed="10000" />
 				</p:messages>

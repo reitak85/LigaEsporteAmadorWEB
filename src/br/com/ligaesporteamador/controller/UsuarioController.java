@@ -46,6 +46,8 @@ public class UsuarioController extends UsuarioBO{
 				usuario.setSenha(MD5.criptografar(usuario.getSenha()));
 				usuario = usuarioService.insertUsuario(usuario);
 				
+				Util.setAttribute("userID", usuario.getId());
+				
 				Util.redirect("cadastrarTime.html");
 				
 			}catch (ParseException ep) { 

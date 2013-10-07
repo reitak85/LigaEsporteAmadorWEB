@@ -1,5 +1,8 @@
 package br.com.ligaesporteamador.dao.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.ligaesporteamador.bd.DataAccessService;
@@ -21,7 +24,13 @@ public class UsuarioDaoImpl extends DataAccessService<Usuario> implements Usuari
 
 	@Override
 	public Usuario findUsuario(Long id) throws Exception {
-		return find(id);
+
+		Map<String, Object>  params = new HashMap<String, Object>();
+
+		String query ="SELECT U FROM Usuario U WHERE U.id = :USUARIO_ID";	
+		params.put("USUARIO_ID", id);
+
+		return createQueryUniqueResultID(query, params);
 	}
 
 	@Override

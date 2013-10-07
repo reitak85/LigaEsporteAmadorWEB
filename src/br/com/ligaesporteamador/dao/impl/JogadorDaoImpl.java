@@ -1,6 +1,8 @@
 package br.com.ligaesporteamador.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,21 +14,20 @@ import br.com.ligaesporteamador.model.Jogador;
 public class JogadorDaoImpl extends DataAccessService<Jogador> implements JogadorDao{
 
 	@Override
-	public void insertJogador(Jogador jogador) throws Exception {
-		create(jogador);
+	public Jogador insertJogador(Jogador jogador) throws Exception {
+		return create(jogador);
 	}
 
 	@Override
 	public List<Jogador> findJogador(Jogador jogador) throws Exception {
-		
-		StringBuffer query = new StringBuffer();
-		query.append("select j from jogador j where j.time = ");
-		query.append(jogador.getTime().getId());
-		
-		return createQuery(query.toString());
-	}
-	
-	
 
+		Map<String, Object>  params = new HashMap<String, Object>();
+		
+		String query ="SELECT J FROM Jogador J WHERE J.time.id = :TIME_ID";	
+		params.put("TIME_ID", jogador.getTime().getId());
+		
+		return createQueryById(query, params);
+		
+	}
 	
 }

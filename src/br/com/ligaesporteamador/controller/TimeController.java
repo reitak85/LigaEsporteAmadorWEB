@@ -91,9 +91,9 @@ public class TimeController extends TimeBO {
 		try {
 
 			time.getComplementoEndereco()
-					.getEndereco()
-					.setCep(time.getComplementoEndereco().getEndereco()
-							.getCep().replace("-", ""));
+			.getEndereco()
+			.setCep(time.getComplementoEndereco().getEndereco()
+					.getCep().replace("-", ""));
 
 			time.getComplementoEndereco().setEndereco(
 					enderecoService.findEnderecoByCep(time
@@ -103,7 +103,7 @@ public class TimeController extends TimeBO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void cancelJogador(){
 		try {
 			jogadores = new Jogador();
@@ -116,22 +116,22 @@ public class TimeController extends TimeBO {
 
 	public void saveJogador() {
 		try {
-			
+
 			String message = validaForm(jogadores);
 
 			if (!message.equals("")) {
 				EnviarMensagem.atencao(message, null, false);
 			} else {
-				
+
 				jogadores.setTime(time);
 				jogadores = insertDateValidation(jogadores);
-				
-				jogadorService.insertJogador(jogadores);
+
+				jogadores = jogadorService.insertJogador(jogadores);
 				jogadors = jogadorService.findJogador(jogadores);
 				jogadores = new Jogador();
-				
+
 				EnviarMensagem.informacao("Jogador incluido com sucesso!", null, false);
-				
+
 				Util.closeModal("dlg2");
 			}
 
@@ -149,10 +149,12 @@ public class TimeController extends TimeBO {
 		} else {
 			try {
 
-				Long idUser = Long.parseLong(Util.getParameter("usuarioId"));
-				usuario = usuarioService.findUsuario(idUser);
-				time.setUsuario(usuario);
+					Long idUser = Long.parseLong(Util.getAttribute("userID"));
+					
 
+					usuario = usuarioService.findUsuario(idUser);
+					time.setUsuario(usuario);
+				
 				if (time.getId() != null) {
 					time = updatetDateValidation(time);
 				} else {
@@ -174,6 +176,7 @@ public class TimeController extends TimeBO {
 
 	public void proximo() {
 		try {
+			Util.removeAttribute("userID");
 			Util.redirect("cadastrarQuadraCampo.html");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -243,5 +246,5 @@ public class TimeController extends TimeBO {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 }

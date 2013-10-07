@@ -49,7 +49,7 @@ public abstract class DataAccessService<T> {
         return t;
     }
 
-    public T find(Object id) {
+    public T find(Long id) {
         return this.em.find(this.type, id);
     }
 
@@ -96,6 +96,25 @@ public abstract class DataAccessService<T> {
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			q.setParameter(entry.getKey(), entry.getValue().toString());
+		}
+
+		List<T> tList = (List<T>) q.getResultList();
+
+		for (T t : tList) {
+			
+			return t;
+		}
+		
+		return null;
+    }
+    
+    @SuppressWarnings("unchecked")
+	public T createQueryUniqueResultID(String query, Map<String, Object> params){
+    	
+		Query q = this.em.createQuery(query);
+
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			q.setParameter(entry.getKey(), Long.valueOf(entry.getValue().toString()));
 		}
 
 		List<T> tList = (List<T>) q.getResultList();
