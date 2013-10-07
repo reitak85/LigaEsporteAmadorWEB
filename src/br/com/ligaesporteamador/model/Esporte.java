@@ -31,6 +31,9 @@ public class Esporte extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CategoriaEsporte> categoriaEsportes;
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Noticia> noticias;
+
 	public Long getId() {
 		return id;
 	}
@@ -61,6 +64,14 @@ public class Esporte extends BaseEntity {
 
 	public void setCategoriaEsportes(List<CategoriaEsporte> categoriaEsportes) {
 		this.categoriaEsportes = categoriaEsportes;
+	}
+
+	public List<Noticia> getNoticias() {
+		return noticias;
+	}
+
+	public void setNoticias(List<Noticia> noticias) {
+		this.noticias = noticias;
 	}
 
 }

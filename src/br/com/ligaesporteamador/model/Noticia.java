@@ -1,19 +1,23 @@
 package br.com.ligaesporteamador.model;
 
 import java.util.Calendar;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+@Entity
 @Table(name = "NOTICIA_IMAGEM")
-public class Noticia {
+public class Noticia extends BaseEntity {
 
 	@Id
 	@GeneratedValue
@@ -35,6 +39,8 @@ public class Noticia {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA_DA_NOTICIA")
 	private Calendar data;
+	
+	private Date dataNoticia;
 
 	@Column(name = "IMAGEM")
 	private String imagem;
@@ -48,8 +54,8 @@ public class Noticia {
 	@Column(name = "NOTICIA_TRES")
 	private String noticiaTres;
 
-	@ManyToOne
-	@Column(name = "ESPORTE_ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ESPORTE_ID")
 	private Esporte esporte;
 
 	public Noticia() {
@@ -143,5 +149,16 @@ public class Noticia {
 	public void setEsporte(Esporte esporte) {
 		this.esporte = esporte;
 	}
+
+	public Date getDataNoticia() {
+		return dataNoticia;
+	}
+
+	public void setDataNoticia(Date dataNoticia) {
+		this.dataNoticia = dataNoticia;
+		data.setTime(dataNoticia);
+	}
+	
+	
 
 }
