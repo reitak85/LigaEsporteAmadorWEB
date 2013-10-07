@@ -8,12 +8,14 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.ligaesporteamador.model.BaseEntity;
+import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.model.UsuarioSistema;
 import br.com.ligaesporteamador.util.MD5;
 
 @Controller("gerarBD")
 @Scope("request")
-public class GerarBD extends DataAccessService<UsuarioSistema>{
+public class GerarBD extends DataAccessService<BaseEntity>{
 
 	private UsuarioSistema usuarioSistema;
 
@@ -26,6 +28,7 @@ public class GerarBD extends DataAccessService<UsuarioSistema>{
 			
 			recriaSchema();
 			createUser();
+			createEsporte("Futebol", "Futebol");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,6 +43,13 @@ public class GerarBD extends DataAccessService<UsuarioSistema>{
 		usuarioSistema.setSenha(MD5.criptografar("123Admin"));
 		
 		create(usuarioSistema);
+	}
+	
+	public void createEsporte(String esportee, String desc) throws Exception{
+		Esporte esporte = new Esporte();
+		esporte.setNome(esportee);
+		esporte.setDescricao(desc);
+		create(esporte);
 	}
 
 	public void recriaSchema() throws Exception {

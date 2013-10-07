@@ -19,41 +19,42 @@
 	      				</p:selectOneMenu>
       				
       					<h:outputLabel value="Titulo:" />
-      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
+      					<p:inputText value="#{noticiaController.noticia.titulo}" size="50" maxlength="70"/>
       					
       					<h:outputLabel value="Sub-Titulo:" />
-      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
+      					<p:inputText value="#{noticiaController.noticia.subTitulo}" size="50" maxlength="70"/>
       					
       					<h:outputLabel value="Creditos da Imagem:" />
-      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
+      					<p:inputText value="#{noticiaController.noticia.credito}" size="50" maxlength="70"/>
       					
       					<h:outputLabel value="Legenda da Imagem:" />
-      					<p:inputText value="#{noticiaController.esportes}" size="50" maxlength="70"/>
+      					<p:inputText value="#{noticiaController.noticia.legenda}" size="50" maxlength="70"/>
       					
       					<h:outputLabel value="Data do Notícia:" />
-      					<p:calendar value="#{noticiaController.esportes}" pattern="dd/MM/yyyy"/>
+      					<p:calendar value="#{noticiaController.noticia.data}" pattern="dd/MM/yyyy"/>
       				
       				</h:panelGrid>
       				
       				<h:panelGrid columns="1" style="margin-left:125px; margin-top:20px; heigth:50px;">
 						<h:outputLabel value="Imagem" />
-						<p:fileUpload mode="advanced" 
-									  sizeLimit="100000"
+						<p:fileUpload fileUploadListener="#{noticiaController.handleFileUpload}" mode="advanced" 
+									  sizeLimit="10000000"
+									  fileLimit="1" 
 									  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 									  label="Selecionar"
 									  uploadLabel="Atualizar"
-									  cancelLabel="Cancelar"/>
+									  cancelLabel="Cancelar"   />
 					</h:panelGrid>
 					
 					<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:50px; margin-left:20px;">
-						<h:outputLabel value="#{noticiaController.esportes}" value="Notícias parte I"/>
-						<p:inputTextarea cols="80" rows="6" autoResize="false"  maxlength="500"/>
+						<h:outputLabel value="Notícias parte I"/>
+						<p:inputTextarea value="#{noticiaController.noticia.noticiaUm}" cols="80" rows="6" autoResize="false"  maxlength="500"/>
 						
 						<h:outputLabel value="Notícias parte II"/>
-						<p:inputTextarea value="#{noticiaController.esportes}" cols="80" rows="6" autoResize="false" maxlength="500"/>
+						<p:inputTextarea value="#{noticiaController.noticia.noticiaDois}" cols="80" rows="6" autoResize="false" maxlength="500"/>
 						
 						<h:outputLabel value="Notícias parte III"/>
-						<p:inputTextarea value="#{noticiaController.esportes}" cols="80" rows="6" autoResize="false" maxlength="500"/>
+						<p:inputTextarea value="#{noticiaController.noticia.noticiaTres}" cols="80" rows="6" autoResize="false" maxlength="500"/>
 					</h:panelGrid>
 					
 					<h:panelGrid style="margin-top:20px; margin-left:auto; margin-right:auto;">

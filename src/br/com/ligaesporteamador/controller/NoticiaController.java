@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,6 @@ public class NoticiaController extends NoticiaBO {
 
 	public void insertNoticia() {
 		try {
-
 			noticia = insertNoticiaValidation(noticia);
 			String message = validationInsertForm(noticia);
 
@@ -83,6 +83,12 @@ public class NoticiaController extends NoticiaBO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void handleFileUpload(FileUploadEvent event) {  
+        System.out.println("OKOK agora bora rss");
+        EnviarMensagem.informacao((event.getFile().getFileName() + " is uploaded."), null, false);
+
+    } 
 	
 	public List<Esporte> getEsportes() {
 		return esportes;
