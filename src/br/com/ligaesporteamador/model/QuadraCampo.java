@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -43,7 +44,11 @@ public class QuadraCampo  extends BaseEntity{
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "COMPLEMENTO_ENDERECO_ID")
 	private ComplementoEndereco complementoEndereco;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "TIME_ID")
+	private Time time;
+	
 	public Long getId() {
 		return id;
 	}
@@ -98,6 +103,14 @@ public class QuadraCampo  extends BaseEntity{
 
 	public void setComplementoEndereco(ComplementoEndereco complementoEndereco) {
 		this.complementoEndereco = complementoEndereco;
+	}
+
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 }

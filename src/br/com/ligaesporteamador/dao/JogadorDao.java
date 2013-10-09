@@ -9,4 +9,6 @@ public interface JogadorDao {
 	public Jogador insertJogador(Jogador jogador) throws Exception;
 	
 	public List<Jogador> findJogador(Jogador jogador) throws Exception;
+	
+	public void deleteJogador(Long id) throws Exception;
 }

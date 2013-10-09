@@ -16,16 +16,11 @@ public abstract class DataAccessService<T> {
 
     private EntityManager em;
 	
-    private Class<T> type;
+    private T type;
 
     public DataAccessService() {
     	setEntityManager();
     }
-
-    public DataAccessService(Class<T> type) {
-        this.type = type;
-    }
-    
 
 	public void setEntityManager() {
 		try {
@@ -49,13 +44,14 @@ public abstract class DataAccessService<T> {
         return t;
     }
 
-    public T find(Long id) {
-        return this.em.find(this.type, id);
+    @SuppressWarnings("unchecked")
+	public T find(Long id) {
+        return (T) this.em.find(type.getClass(), id);
     }
 
 
     public void delete(Object id) {
-        Object ref = this.em.getReference(this.type, id);
+        Object ref = this.em.getReference(type.getClass(), id);
         this.em.remove(ref);
     }
 

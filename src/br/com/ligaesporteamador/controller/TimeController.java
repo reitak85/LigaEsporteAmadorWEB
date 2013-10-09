@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -139,6 +140,20 @@ public class TimeController extends TimeBO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deletejogador(){
+		
+		try {
+			
+			String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id_jogador");
+			FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().remove("id_jogador");
+			jogadorService.deleteJogador(Long.parseLong(id));
+			jogadors = jogadorService.findJogador(jogadores);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void insertTime() {
 
@@ -177,6 +192,7 @@ public class TimeController extends TimeBO {
 	public void proximo() {
 		try {
 			Util.removeAttribute("userID");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("timeController");
 			Util.redirect("cadastrarQuadraCampo.html");
 		} catch (Exception e) {
 			e.printStackTrace();

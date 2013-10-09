@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.ligaesporteamador.bd.DataAccessService;
 import br.com.ligaesporteamador.dao.NoticiaDao;
-import br.com.ligaesporteamador.model.CategoriaEsporte;
 import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.model.Noticia;
 

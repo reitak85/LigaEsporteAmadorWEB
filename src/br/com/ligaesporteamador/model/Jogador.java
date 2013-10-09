@@ -33,10 +33,10 @@ public class Jogador extends BaseEntity {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "CONTATO_ID")
 	private Contato contato;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TIME_ID")
-	private Time time;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)  
+    @JoinColumn(name = "TIME_ID")  
+    private Time time; 
 	
 	public Jogador() {
 		contato = new Contato();

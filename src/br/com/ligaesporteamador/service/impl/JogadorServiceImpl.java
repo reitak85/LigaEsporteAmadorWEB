@@ -25,4 +25,9 @@ public class JogadorServiceImpl implements JogadorService{
 		return jogadorDao.findJogador(jogador);
 	}
 
+	@Override
+	public void deleteJogador(Long id) throws Exception {
+		jogadorDao.deleteJogador(id);
+	}
+
 }

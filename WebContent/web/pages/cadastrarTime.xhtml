@@ -19,13 +19,17 @@
 			</div>
 		</div>
 		<div class="topCad">
-			<img alt="cadastro de usuario"
-				src="../../resources/img/cad_cinza_01.fw.png" /> <font>Cadastrar
-				Usuário</font> <img alt="cadastro de usuario"
-				src="../../resources/img/cad_laranja_02.fw.png" /> <font>Cadastrar
-				Time</font> <img alt="cadastro de usuario"
-				src="../../resources/img/cad_cinza_03.fw.png" /> <font>Cadastrar
-				Quadra/Campo</font>
+		    <img alt="cadastro de usuario" src="../../resources/img/cad_cinza_01.fw.png" /> 
+			<font>Cadastrar Usuário</font> 
+			
+			<img alt="cadastro de Time" src="../../resources/img/cad_laranja_02.fw.png" /> 
+			<font>Cadastrar Time</font>
+			 
+			<img alt="cadastro de Quadra" src="../../resources/img/cad_cinza_03.fw.png" /> 
+			<font>Cadastrar Quadra/Campo</font>
+			
+			<img alt="cadastro de Plano" src="../../resources/img/cad_cinza_03.fw.png" /> 
+			<font>Cadastrar Plano/Contrato</font>
 		</div>
 		
 		
@@ -148,14 +152,18 @@
 						<f:facet name="header">
 							<h:outputText value="Alterar" />
 						</f:facet>
-						<p:commandButton icon="ui-icon-pencil"/>
+						<p:commandButton icon="ui-icon-pencil">
+							
+						</p:commandButton>
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<p:commandButton icon="ui-icon-close"/>
+						<p:commandButton icon="ui-icon-close" update="dataJogador" onclick="dlg3.show();">
+							<f:param id="id_jogador" name="id_jogador" value="#{jogador.id}"/>
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:panelGrid>
@@ -174,6 +182,13 @@
 	    		<p:commandButton action="#{timeController.proximo}" value="Proximo"/>
 	    		<f:param name="timeId" value="#{timeController.time.id}"/>
 	    	</h:panelGrid>
+	    	
+	    	<p:confirmDialog id="modalDialogExclusao" header="Deseja excluir jogador" message="Tem certeza que deseja excluir esse jogador?" widgetVar="dlg3" modal="true">  
+				     		
+        		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{timeController.deletejogador}" update="dataJogador"/>  
+        		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="hide();"/>
+        		       
+    		</p:confirmDialog>  
 		
 			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
 		    	<h:panelGrid columns="2" styleClass="alingRigth">
