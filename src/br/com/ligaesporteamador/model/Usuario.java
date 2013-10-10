@@ -52,7 +52,7 @@ public class Usuario  extends BaseEntity{
 	@Column(name = "TERMO_CONTRATO")
 	private boolean termoContrato;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "CONTATO_ID")
 	private Contato contato;
 	

@@ -48,7 +48,7 @@ public class UsuarioController extends UsuarioBO{
 				
 				Util.setAttribute("userID", usuario.getId());
 				
-				Util.redirect("cadastrarTime.html");
+				Util.redirect("cadastrarQuadraCampo.html");
 				
 			}catch (ParseException ep) { 
 				ep.printStackTrace();

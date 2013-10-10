@@ -1,7 +1,9 @@
 package br.com.ligaesporteamador.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +30,7 @@ public class ComplementoEndereco  extends BaseEntity{
 	@Column(name = "ZONA", length = 60)
 	private String zona;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "ENDERECO_ID", nullable = false)
 	private Endereco endereco;
 

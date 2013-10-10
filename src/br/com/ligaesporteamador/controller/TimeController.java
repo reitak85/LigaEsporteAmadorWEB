@@ -14,12 +14,14 @@ import br.com.ligaesporteamador.bo.TimeBO;
 import br.com.ligaesporteamador.model.CategoriaEsporte;
 import br.com.ligaesporteamador.model.Esporte;
 import br.com.ligaesporteamador.model.Jogador;
+import br.com.ligaesporteamador.model.QuadraCampo;
 import br.com.ligaesporteamador.model.Time;
 import br.com.ligaesporteamador.model.Usuario;
 import br.com.ligaesporteamador.service.CategoriaEsporteService;
 import br.com.ligaesporteamador.service.EnderecoService;
 import br.com.ligaesporteamador.service.EsporteService;
 import br.com.ligaesporteamador.service.JogadorService;
+import br.com.ligaesporteamador.service.QuadraCampoService;
 import br.com.ligaesporteamador.service.TimeService;
 import br.com.ligaesporteamador.service.UsuarioService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
@@ -37,6 +39,7 @@ public class TimeController extends TimeBO {
 	private List<Jogador> jogadors;
 	private List<Esporte> esportes;
 	private List<CategoriaEsporte> categoriaEsportes;
+	private QuadraCampo quadraCampo;
 
 	@Autowired
 	private EsporteService esporteService;
@@ -55,6 +58,9 @@ public class TimeController extends TimeBO {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private QuadraCampoService quadraCampoService;
 
 	public TimeController() {
 
@@ -66,6 +72,7 @@ public class TimeController extends TimeBO {
 		esportes = new ArrayList<Esporte>();
 		categoriaEsportes = new ArrayList<CategoriaEsporte>();
 		jogadors = new ArrayList<Jogador>();
+		quadraCampo = new QuadraCampo();
 	}
 
 	@PostConstruct
@@ -165,10 +172,15 @@ public class TimeController extends TimeBO {
 			try {
 
 					Long idUser = Long.parseLong(Util.getAttribute("userID"));
-					
+					Long idQuadra = Long.parseLong(Util.getAttribute("quadraId"));
 
+					
+					
 					usuario = usuarioService.findUsuario(idUser);
+					quadraCampo = quadraCampoService.selectQuadraCampo(idQuadra);
+					
 					time.setUsuario(usuario);
+					time.setQuadraCampo(quadraCampo);
 				
 				if (time.getId() != null) {
 					time = updatetDateValidation(time);
@@ -191,9 +203,12 @@ public class TimeController extends TimeBO {
 
 	public void proximo() {
 		try {
+			
 			Util.removeAttribute("userID");
+			Util.removeAttribute("quadraId");
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("timeController");
-			Util.redirect("cadastrarQuadraCampo.html");
+			Util.redirect("cadastrarPlano.html");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

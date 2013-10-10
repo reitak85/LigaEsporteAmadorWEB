@@ -28,7 +28,7 @@ public class HorarioJogo extends BaseEntity {
 	@Column(name = "HORA_FINAL", length = 10)
 	private String horaFinal;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "QUADRA_CAMPO_ID")
 	private QuadraCampo quandraCampo;
 

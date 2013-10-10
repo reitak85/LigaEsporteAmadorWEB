@@ -26,11 +26,11 @@ public class Endereco {
 	@Column(name = "NOME", length = 250)
 	private String nome;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "CIDADE_ID")
 	private Cidade cidade;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "BAIRRO_ID")
 	private Bairro bairro;
 	

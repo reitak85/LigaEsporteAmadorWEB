@@ -18,7 +18,7 @@ import br.com.ligaesporteamador.util.MD5;
 public class GerarBD extends DataAccessService<BaseEntity>{
 
 	private UsuarioSistema usuarioSistema;
-
+	
 
 	public void geraBanco() {
 		
@@ -28,7 +28,7 @@ public class GerarBD extends DataAccessService<BaseEntity>{
 			
 			recriaSchema();
 			createUser();
-			createEsporte("Futebol", "Futebol");
+			//createEsporte("Futebol", "Futebol");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

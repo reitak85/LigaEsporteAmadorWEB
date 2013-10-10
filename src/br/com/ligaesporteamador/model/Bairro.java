@@ -26,7 +26,7 @@ public class Bairro {
 	@Column(name = "ZONA", nullable = true, length = 30)
 	private String zona;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "CIDADE_ID")
 	private Cidade cidade;
 	

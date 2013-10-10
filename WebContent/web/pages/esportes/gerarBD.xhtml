@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	 <div id="div1" >
+                <img src="../../resources/img/cadastro_usuario.fw.png"/>
+             </div>
+             <div id="menu2">
+				<div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>	             
+             </div>
+             
+			
+			 <h:form>
+			 	
+			 		<h:panelGrid style="">
+			 			
+			 			<p:commandButton value="Gerar Banco de Dados" action="#{gerarBD.geraBanco}"></p:commandButton>
+			 			
+			 		</h:panelGrid>
+			 	
+			 </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

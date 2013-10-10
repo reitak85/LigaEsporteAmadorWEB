@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 public class ImagenQuadraCampo extends BaseEntity {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "IMAGEN_QUADRA_CAMPO_ID", length = 10)
 	private Long id;
 
@@ -28,7 +29,7 @@ public class ImagenQuadraCampo extends BaseEntity {
 	@Column(name = "DESCRICAO", length = 255)
 	private String descricao;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "QUADRA_CAMPO_ID")
 	private QuadraCampo quandraCampo;
 

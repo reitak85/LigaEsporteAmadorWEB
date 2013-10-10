@@ -26,7 +26,7 @@ public class CategoriaEsporte extends BaseEntity{
 	@Column(name = "DESCRICAO", length = 255)
 	private String descricao;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "ESPORTE_ID")
 	private Esporte esporte;
 

@@ -1,5 +1,6 @@
 package br.com.ligaesporteamador.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,17 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "QUADRA_CAMPO")
-public class QuadraCampo  extends BaseEntity{
+public class QuadraCampo extends BaseEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "QUADRA_CAMPO_ID", length = 10)
 	private Long id;
 
@@ -33,22 +33,23 @@ public class QuadraCampo  extends BaseEntity{
 	@Column(name = "OBSERVACAO", length = 100)
 	private String observacao;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "IMAGEN_QUADRA_CAMPO_ID")
+	@OneToMany(mappedBy="quandraCampo", fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	private List<ImagenQuadraCampo> imagenQuadraCampos;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "HORA_JOGO_ID")
 	private List<HorarioJogo> horarioJogos;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "COMPLEMENTO_ENDERECO_ID")
 	private ComplementoEndereco complementoEndereco;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "TIME_ID")
-	private Time time;
-	
+	public QuadraCampo() {
+		complementoEndereco = new ComplementoEndereco();
+		horarioJogos = new ArrayList<HorarioJogo>();
+		imagenQuadraCampos = new ArrayList<ImagenQuadraCampo>();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -103,14 +104,6 @@ public class QuadraCampo  extends BaseEntity{
 
 	public void setComplementoEndereco(ComplementoEndereco complementoEndereco) {
 		this.complementoEndereco = complementoEndereco;
-	}
-
-	public Time getTime() {
-		return time;
-	}
-
-	public void setTime(Time time) {
-		this.time = time;
 	}
 
 }

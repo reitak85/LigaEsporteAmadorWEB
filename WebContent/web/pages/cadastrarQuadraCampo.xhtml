@@ -18,59 +18,76 @@
              <div class="topCad">
              	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_01.fw.png"/>
              	<font>Cadastrar Usuário</font>
-             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_02.fw.png"/>
+
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_02.fw.png"/>
+				<font>Cadastrar Quadra/Campo</font>
+
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png"/>
              	<font>Cadastrar Time</font>
-             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_03.fw.png"/>
-             	<font>Cadastrar Quadra/Campo</font>
+             	
+
              	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png" /> 
 				<font>Cadastrar Plano/Contrato</font>
              </div>
             
             <h:form>
              		<h:panelGrid columns="2" style="margin-top:30px;" styleClass="alingRigth">
-             			<h:outputLabel value="Tipo"/>
-             			<p:selectOneMenu id="tipo" styleClass="alingLeft" style="width:150px;">
-             				<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>
-             				<f:selectItem itemLabel="Quadra" itemValue="1" />
-             				<f:selectItem itemLabel="Campo" itemValue="1" />
-             				<f:selectItem itemLabel="Society" itemValue="1" />
-             			</p:selectOneMenu>
-             			
-             			<h:outputLabel value="Nome Quadra/Campo"/>
-             			<p:inputText id="nomeQuadraCampo" size="40" maxlength="100"/>
              			
              			<h:outputLabel value="Cep"/>
-             			<p:inputMask mask="99999-999" id="cep" size="15" maxlength="9"/>
+						<p:inputMask mask="99999-999" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.cep}">
+							<f:ajax event="blur" render="logradouro bairro cidade uf zona" listener="#{quadraCampoController.findEnderecoByCep}"/>
+						</p:inputMask>
+						
+						<h:outputLabel value="Estado" />
+						<p:inputText id="uf" readonly="true" size="20" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.cidade.uf}"/>
+		
+						<h:outputLabel value="Cidade" />
+						<p:inputText id="cidade" readonly="true" size="30" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.cidade.nome}"/>
+		
+						<h:outputLabel value="Bairro" />
+						<p:inputText id="bairro" readonly="true" size="30" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.bairro.nome}"/>
+						
+						<h:outputLabel value="Logradouro" />
+						<p:inputText id="logradouro" readonly="true" size="40" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.nome}"/>
+						
+						<h:outputLabel value="Numero" />
+						<p:inputText value="#{quadraCampoController.quadraCampo.complementoEndereco.numero}"/>
+						
+						<h:outputLabel value="Complemento" />
+						<p:inputText value="#{quadraCampoController.quadraCampo.complementoEndereco.complemento}"/>
+						
+						<h:outputLabel value="Zona" />
+						<p:inputText id="zona" readonly="true" value="#{quadraCampoController.quadraCampo.complementoEndereco.endereco.bairro.zona}"/>
+
              			
-             			<h:outputLabel value="Cidade"/>
-             			<p:inputText id="cidade" size="30" maxlength="50" readonly="true"/>
+             			<h:outputLabel value="Tipo"/>
+             			<p:selectOneMenu id="tipo" styleClass="alingLeft" style="width:150px;" value="#{quadraCampoController.quadraCampo.tipo}">
+             				<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>
+             				<f:selectItem itemLabel="Quadra" itemValue="Quadra" />
+             				<f:selectItem itemLabel="Campo" itemValue="Campo" />
+             				<f:selectItem itemLabel="Society" itemValue="Society" />
+             			</p:selectOneMenu>
              			
-             			<h:outputLabel value="Bairro"/>
-             			<p:inputText id="bairro" size="30" maxlength="50" readonly="true"/>
-             			
-             			<h:outputLabel value="Endereco"/>
-             			<p:inputText id="endereco" size="30" maxlength="50" readonly="true"/>
-             			
-             			<h:outputLabel value="Numero"/>
-             			<p:inputText id="numero" size="20" maxlength="20" />
-             			
-             			<h:outputLabel value="Complemento"/>
-             			<p:inputText id="complemento" size="30" maxlength="30" />
+             			<h:outputLabel value="Nome Quadra/Campo" />
+             			<p:inputText id="nomeQuadraCampo" size="40" maxlength="100" value="#{quadraCampoController.quadraCampo.nomeQuadraCampo}"/>
 					                  
 					    <h:outputLabel value="Observacoes" style="margin-top:10px;"/>
-					    <p:inputTextarea id="observacoes" rows="5" cols="60" autoResize="false" style="margin-top:10px;"/>
+					    <p:inputTextarea id="observacoes" rows="5" cols="60" autoResize="false" style="margin-top:10px;" value="#{quadraCampoController.quadraCampo.observacao}"/>
 					     
 					</h:panelGrid>
+					
 					<h:panelGrid columns="1" style="margin-left:130px; margin-top:20px;">
 						
 						<h:outputLabel value="Imagens da Quadra/Campo"/>
-						<p:fileUpload  id="imagemQuadra" mode="advanced" sizeLimit="100000"
+						<p:fileUpload id="imagemQuadra" 
+									  fileUploadListener="#{quadraCampoController.handleFileUpload}" mode="advanced"
+									  sizeLimit="10000000"
 									  multiple="true"
 					                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
 					                  label="Anexar Img"
 					                  uploadLabel="Salvar"
-					                  cancelLabel="Cancelar"
-					                  />
+					                  cancelLabel="Cancelar"/>
+					
 						
 					</h:panelGrid>             		
              
@@ -79,6 +96,7 @@
 					paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
+					
 					<f:facet name="header">  
 	            		Horarios de Jogos  
 	        		</f:facet>
@@ -122,16 +140,15 @@
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:79px;">
-				<p:commandButton id="modalDialogButton" value="Modal" onclick="dlg2.show();" type="button"/> 
+				<p:commandButton id="modalDialogButton" value="Adcionar Horario" action="#{quadraCampoController.insertQuadraCampo}"/> 
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
-	    		<p:commandButton value="Finalizar"/>
+	    		<p:commandButton action="#{quadraCampoController.proximo}" value="Proximo"/>
 	    	</h:panelGrid>
-		</h:form>
-		
-		<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
-		    <h:form>
+			
+			
+			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
 		    	<h:panelGrid columns="2" styleClass="alingRigth">
 		    		<h:outputLabel value="Dia da Semana"/>
 		    		<p:selectOneMenu styleClass="alingLeft" style="width:150px;">
@@ -157,9 +174,11 @@
 		    		<p:commandButton value="Cancelar"/>
 		    	</h:panelGrid>
 		    	
-		    	
-			    </h:form>  
 			</p:dialog> 
+			
+		</h:form>
+		
+
             
         </ui:define>
     </ui:composition>

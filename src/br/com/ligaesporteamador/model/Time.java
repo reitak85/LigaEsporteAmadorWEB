@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,11 +24,11 @@ public class Time extends BaseEntity {
 	@Column(name = "TIME_ID", length = 10)
 	private Long id;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "ESPORTE_ID")
 	private Esporte esporte;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "CATEGORIA_ID")
 	private CategoriaEsporte categoria;
 
@@ -40,17 +41,21 @@ public class Time extends BaseEntity {
 	@Column(name = "EMBLEMA_TIME", length = 255)
 	private String emblemaDoTime;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "JOGADOR_ID")
 	private List<Jogador> jogador;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "COMPLEMENTO_ENDERECO_ID")
 	private ComplementoEndereco complementoEndereco;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "USUARIO_ID")
 	private Usuario usuario;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
+	@JoinColumn(name = "QUADRA_CAMPO_ID")
+	private QuadraCampo quadraCampo;
 
 	public Time() {
 		jogador = new ArrayList<Jogador>();
@@ -130,5 +135,13 @@ public class Time extends BaseEntity {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
+	public QuadraCampo getQuadraCampo() {
+		return quadraCampo;
+	}
+
+	public void setQuadraCampo(QuadraCampo quadraCampo) {
+		this.quadraCampo = quadraCampo;
+	}
+
 }

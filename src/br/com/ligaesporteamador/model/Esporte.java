@@ -28,10 +28,10 @@ public class Esporte extends BaseEntity {
 	@Column(name = "DESCRICAO", length = 255)
 	private String descricao;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	private List<CategoriaEsporte> categoriaEsportes;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	private List<Noticia> noticias;
 
 	public Long getId() {
