@@ -19,14 +19,13 @@
              	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_01.fw.png"/>
              	<font>Cadastrar Usuário</font>
 
-             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_02.fw.png"/>
-				<font>Cadastrar Quadra/Campo</font>
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_02.fw.png"/>
+				<font>Cadastrar Time</font>
 
-             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png"/>
-             	<font>Cadastrar Time</font>
-             	
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_laranja_03.fw.png"/>
+             	<font>Cadastrar Quadra/Campo</font>
 
-             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_03.fw.png" /> 
+             	<img alt="cadastro de usuario" src="../../resources/img/cad_cinza_04.fw.png" /> 
 				<font>Cadastrar Plano/Contrato</font>
              </div>
             
@@ -92,55 +91,62 @@
 					</h:panelGrid>             		
              
              	<h:panelGrid style="width:800px; margin-top:20px; margin-left:auto; margin-right:auto;">
-				<p:dataTable id="dataTable" var="car"
+				<p:dataTable id="dataHorarioJogo" value="#{quadraCampoController.horarioJogos}" var="hour"
 					paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
+					rowsPerPageTemplate="5,10,15"
+					selectionMode="single" rowKey="hour.id"
+					>
 					
 					<f:facet name="header">  
 	            		Horarios de Jogos  
 	        		</f:facet>
 	
-					<p:column>
+					
+					<p:column style="text-align:center;">
 						<f:facet name="header">
 							<h:outputText value="Dia da Semana" />
 						</f:facet>
-						<h:outputText value="Luiz" />
+						<h:outputText value="#{hour.dia}"/>
 					</p:column>
 	
-					<p:column>
+					<p:column style="text-align:center;">
 						<f:facet name="header">
 							<h:outputText value="Horario de Inicio" />
 						</f:facet>
-						<h:outputText value="luiz@luiz.com" />
+						<h:outputText value="#{hour.horaInicial}">
+							<f:convertDateTime pattern="HH:mm:ss" timeZone="America/Sao_Paulo" />  
+						</h:outputText>
 					</p:column>
 	
-					<p:column>
+					<p:column style="text-align:center;">
 						<f:facet name="header">
 							<h:outputText value="Horario de Fim" />
 						</f:facet>
-						<h:outputText value="Alterar" />
+						<h:outputText value="#{hour.horaFinal}">
+							<f:convertDateTime pattern="HH:mm:ss" timeZone="America/Sao_Paulo" />
+						</h:outputText>
 					</p:column>
 	
-					<p:column>
+					<p:column style="text-align:center;">
 						<f:facet name="header">
 							<h:outputText value="Alterar" />
 						</f:facet>
-						<h:outputText value="(11) 95358 - 5795" />
+						<p:commandButton icon="ui-icon-pencil"/>
 					</p:column>
 					
-					<p:column>
+					<p:column style="text-align:center;">
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
-						<h:outputText value="(11) 95358 - 5795" />
+						<p:commandButton icon="ui-icon-close"/>
 					</p:column>
 					
 				</p:dataTable>
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:79px;">
-				<p:commandButton id="modalDialogButton" value="Adcionar Horario" action="#{quadraCampoController.insertQuadraCampo}"/> 
+				<p:commandButton id="modalDialogButton" value="Adcionar Horario" update="dia horarioInicial horarioFinal" action="#{quadraCampoController.insertQuadraCampo}" /> 
 			</h:panelGrid>
 			
 			<h:panelGrid style="margin-left:785px; margin-top:10px; margin-bottom:30px;" columns="1">
@@ -151,7 +157,7 @@
 			<p:dialog id="modalDialog" header="Adicionar Jogador" widgetVar="dlg2" modal="true" height="300" width="600">  
 		    	<h:panelGrid columns="2" styleClass="alingRigth">
 		    		<h:outputLabel value="Dia da Semana"/>
-		    		<p:selectOneMenu styleClass="alingLeft" style="width:150px;">
+		    		<p:selectOneMenu id="dia" styleClass="alingLeft" style="width:150px;" value="#{quadraCampoController.horarioJogo.dia}">
 		    			<f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
 		    			<f:selectItem itemLabel="Segunda-Feira" itemValue="Segunda-Feira" />
 		    			<f:selectItem itemLabel="Terca-Feira" itemValue="Terca-Feira" />
@@ -163,15 +169,15 @@
 		    		</p:selectOneMenu>
 		    		
 		    		<h:outputLabel value="Horario Inicial"/>
-		    		<p:calendar id="horarioInicial" pattern="HH:mm" timeOnly="true" />
+		    		<p:calendar id="horarioInicial" pattern="HH:mm" timeOnly="true" value="#{quadraCampoController.horarioJogo.horaInicial}"/>
 		    		
 		    		<h:outputLabel value="Horario Final"/>
-		    		<p:calendar id="horarioFinal" pattern="HH:mm" timeOnly="true" />
+		    		<p:calendar id="horarioFinal" pattern="HH:mm" timeOnly="true" value="#{quadraCampoController.horarioJogo.horaFinal}"/>
 		    		
 		    	</h:panelGrid>
 		    	<h:panelGrid columns="2" style="margin-right:auto; margin-left:auto; margin-top:15px;">
-		    		<p:commandButton value="Adicionar"/>
-		    		<p:commandButton value="Cancelar"/>
+		    		<p:commandButton value="Adicionar" action="#{quadraCampoController.saveHorarioJogo}" update="dataHorarioJogo"/>
+		    		<p:commandButton value="Cancelar" action="#{quadraCampoController.closeHorarioJogo}" update=""/>
 		    	</h:panelGrid>
 		    	
 			</p:dialog> 

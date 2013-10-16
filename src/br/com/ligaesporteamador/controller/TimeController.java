@@ -98,11 +98,6 @@ public class TimeController extends TimeBO {
 	public void findEnderecoByCep() {
 		try {
 
-			time.getComplementoEndereco()
-			.getEndereco()
-			.setCep(time.getComplementoEndereco().getEndereco()
-					.getCep().replace("-", ""));
-
 			time.getComplementoEndereco().setEndereco(
 					enderecoService.findEnderecoByCep(time
 							.getComplementoEndereco().getEndereco()));
@@ -172,12 +167,8 @@ public class TimeController extends TimeBO {
 			try {
 
 					Long idUser = Long.parseLong(Util.getAttribute("userID"));
-					Long idQuadra = Long.parseLong(Util.getAttribute("quadraId"));
-
-					
 					
 					usuario = usuarioService.findUsuario(idUser);
-					quadraCampo = quadraCampoService.selectQuadraCampo(idQuadra);
 					
 					time.setUsuario(usuario);
 					time.setQuadraCampo(quadraCampo);
@@ -191,6 +182,7 @@ public class TimeController extends TimeBO {
 				time = timeService.insertTime(time);
 				EnviarMensagem.informacao("Adicione o seu time.", null, false);
 
+				Util.setAttribute("timeID", time.getId());
 				Util.openModal("dlg2");
 
 			} catch (Exception e) {
@@ -204,10 +196,8 @@ public class TimeController extends TimeBO {
 	public void proximo() {
 		try {
 			
-			Util.removeAttribute("userID");
-			Util.removeAttribute("quadraId");
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("timeController");
-			Util.redirect("cadastrarPlano.html");
+			Util.redirect("cadastrarQuadraCampo.html");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

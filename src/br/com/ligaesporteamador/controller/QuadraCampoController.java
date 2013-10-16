@@ -15,37 +15,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.ligaesporteamador.bo.HorarioJogoBO;
 import br.com.ligaesporteamador.model.HorarioJogo;
 import br.com.ligaesporteamador.model.ImagenQuadraCampo;
 import br.com.ligaesporteamador.model.QuadraCampo;
+import br.com.ligaesporteamador.model.Time;
 import br.com.ligaesporteamador.service.EnderecoService;
+import br.com.ligaesporteamador.service.HorarioJogoService;
 import br.com.ligaesporteamador.service.QuadraCampoService;
+import br.com.ligaesporteamador.service.TimeService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 import br.com.ligaesporteamador.util.Util;
 
 @Controller("quadraCampoController")
-@Scope("request")
-public class QuadraCampoController {
+@Scope("session")
+public class QuadraCampoController extends HorarioJogoBO{
 
 	@Autowired
 	QuadraCampoService quadraCampoService;
 
 	@Autowired
 	private EnderecoService enderecoService;
+	
+	@Autowired 
+	private HorarioJogoService horarioJogoService;
+	
+	@Autowired
+	private TimeService timeService;
 
 	private QuadraCampo quadraCampo;
 	
 	private HorarioJogo horarioJogo;
 	
+	private Time time;
+	
 	private List<HorarioJogo> horarioJogos;
 	
 	private static List<ImagenQuadraCampo> ImagenQuadraCampo = new ArrayList<ImagenQuadraCampo>();
+	
 
 	public QuadraCampoController() {
 
 		quadraCampo = new QuadraCampo();
 		horarioJogo = new HorarioJogo();
 		horarioJogos = new ArrayList<HorarioJogo>();
+		time = new Time();
 	}
 
 	public void insertQuadraCampo() {
@@ -56,11 +70,17 @@ public class QuadraCampoController {
 				quadraCampo.setImagenQuadraCampos(ImagenQuadraCampo);
 			}
 			
+			Long timeID = Long.parseLong(Util.getAttribute("timeID"));
+			
+			
+			time  = timeService.findTime(timeID);
+			
 			quadraCampo = quadraCampoService.insertQuadraCampo(quadraCampo);
 			
-			Util.setAttribute("quadraId", quadraCampo.getId());
-			
 			EnviarMensagem.informacao("Adicionar horario dos jogos.", null, false);
+			
+			horarioJogo = new HorarioJogo();
+			
 			Util.openModal("dlg2");
 
 		} catch (NumberFormatException e) {
@@ -72,7 +92,7 @@ public class QuadraCampoController {
 	
 	public void proximo(){
 		try {
-			Util.redirect("cadastrarTime.html");
+			Util.redirect("cadastrarPlano.html");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,15 +100,41 @@ public class QuadraCampoController {
 	
 	public void saveHorarioJogo(){
 		
+		try {
+			
+			String message = validateForm(horarioJogo);
+			
+			if(!message.equals("")){
+				EnviarMensagem.atencao(message, null, false);
+			}else{
+				
+				horarioJogo.setQuandraCampo(quadraCampo);
+				
+				horarioJogo = horarioJogoService.saveHorarioJogo(horarioJogo);
+				horarioJogos = horarioJogoService.findHorarioJogo(horarioJogo);
+			}
+			
+			
+			Util.closeModal("dlg2");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void closeHorarioJogo(){
+		try {
+			
+			horarioJogo = new HorarioJogo();
+			Util.closeModal("dlg2");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void findEnderecoByCep() {
 		try {
-
-			quadraCampo.getComplementoEndereco()
-					.getEndereco()
-					.setCep(quadraCampo.getComplementoEndereco().getEndereco()
-							.getCep().replace("-", ""));
 
 			quadraCampo.getComplementoEndereco().setEndereco(
 					enderecoService.findEnderecoByCep(quadraCampo
@@ -103,7 +149,7 @@ public class QuadraCampoController {
 		try {
 			
 			String user = "/usuario_"+Util.getAttribute("userID");
-			File targetFolder = new File("C:/ligaesporteamador/quadra_campo/imagem"+user);
+			File targetFolder = new File("Documents/ligaesporteamador/quadra_campo/imagem"+user);
 			
 			if(!targetFolder.exists()){
 				targetFolder.mkdirs();
@@ -164,4 +210,12 @@ public class QuadraCampoController {
 		this.horarioJogos = horarioJogos;
 	}
 
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+	
 }

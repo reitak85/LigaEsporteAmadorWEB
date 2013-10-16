@@ -9,7 +9,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "CONTATO",
-       uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+       uniqueConstraints = {@UniqueConstraint(columnNames = { })})
 public class Contato  extends BaseEntity{
 
 	@Id

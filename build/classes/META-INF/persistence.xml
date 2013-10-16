@@ -13,7 +13,7 @@
         	<property name="hibernate.archive.autodetection" value="class, hbm" />
             <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/ligaesporteamador" />
 			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.connection.password" value="2007018130" />
+			<property name="hibernate.connection.password" value="" />
         
 			<!--Configuracoes de dialeto e conexao -->
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

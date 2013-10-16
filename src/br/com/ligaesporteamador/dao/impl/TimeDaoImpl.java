@@ -8,6 +8,9 @@ import br.com.ligaesporteamador.model.Time;
 
 @Repository
 public class TimeDaoImpl extends DataAccessService<Time> implements TimeDao{
+	
+	public TimeDaoImpl() {
+	}
 
 	@Override
 	public Time insertTime(Time time) throws Exception {
@@ -21,11 +24,12 @@ public class TimeDaoImpl extends DataAccessService<Time> implements TimeDao{
 
 	@Override
 	public Time findTime(Long idTime) throws Exception {
-		return find(idTime);
+		return em.find(Time.class, idTime);
 	}
 
 	@Override
 	public void deleteTime(Time time) throws Exception {
-		delete(time.getId());
+		 Object ref = this.em.getReference(Time.class, time.getId());
+	     this.em.remove(ref);
 	}
 }

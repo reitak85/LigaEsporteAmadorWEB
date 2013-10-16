@@ -14,13 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 public abstract class DataAccessService<T> {
 
-    private EntityManager em;
+    protected EntityManager em;
 	
-    private T type;
 
     public DataAccessService() {
     	setEntityManager();
     }
+    
 
 	public void setEntityManager() {
 		try {
@@ -42,17 +42,6 @@ public abstract class DataAccessService<T> {
         this.em.getTransaction().commit();
         
         return t;
-    }
-
-    @SuppressWarnings("unchecked")
-	public T find(Long id) {
-        return (T) this.em.find(type.getClass(), id);
-    }
-
-
-    public void delete(Object id) {
-        Object ref = this.em.getReference(type.getClass(), id);
-        this.em.remove(ref);
     }
 
     

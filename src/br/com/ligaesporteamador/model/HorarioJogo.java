@@ -1,5 +1,7 @@
 package br.com.ligaesporteamador.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "DIA_HORARIO_JOGO")
@@ -22,13 +26,16 @@ public class HorarioJogo extends BaseEntity {
 	@Column(name = "DIA", length = 100)
 	private String dia;
 
-	@Column(name = "HORA_INICIAL", length = 10)
-	private String horaInicial;
+	@Temporal(TemporalType.TIME)
+	@Column(name = "HORA_INICIAL")
+	private Date horaInicial;
 
-	@Column(name = "HORA_FINAL", length = 10)
-	private String horaFinal;
+	@Temporal(TemporalType.TIME)
+	@Column(name = "HORA_FINAL")
+	private Date horaFinal;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,
+			CascadeType.MERGE })
 	@JoinColumn(name = "QUADRA_CAMPO_ID")
 	private QuadraCampo quandraCampo;
 
@@ -48,19 +55,19 @@ public class HorarioJogo extends BaseEntity {
 		this.dia = dia;
 	}
 
-	public String getHoraInicial() {
+	public Date getHoraInicial() {
 		return horaInicial;
 	}
 
-	public void setHoraInicial(String horaInicial) {
+	public void setHoraInicial(Date horaInicial) {
 		this.horaInicial = horaInicial;
 	}
 
-	public String getHoraFinal() {
+	public Date getHoraFinal() {
 		return horaFinal;
 	}
 
-	public void setHoraFinal(String horaFinal) {
+	public void setHoraFinal(Date horaFinal) {
 		this.horaFinal = horaFinal;
 	}
 

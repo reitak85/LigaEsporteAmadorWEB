@@ -35,7 +35,6 @@ public class UsuarioDaoImpl extends DataAccessService<Usuario> implements Usuari
 
 	@Override
 	public void deleteUsuario(Usuario usuario) throws Exception {
-		delete(usuario.getId());
 	}
 
 }

@@ -16,14 +16,14 @@ public class HorarioJogoServiceImpl implements HorarioJogoService{
 	HorarioJogoDao horarioJogoDao;
 	
 	@Override
-	public void saveHorarioJogo(HorarioJogo horarioJogo) throws Exception {
-		horarioJogoDao.saveHorarioJogo(horarioJogo);
+	public HorarioJogo saveHorarioJogo(HorarioJogo horarioJogo) throws Exception {
+		return horarioJogoDao.saveHorarioJogo(horarioJogo);
 	}
 
 	@Override
 	public List<HorarioJogo> findHorarioJogo(HorarioJogo horarioJogo)
 			throws Exception {
-		return null;
+		return horarioJogoDao.findHorarioJogos(horarioJogo);
 	}
 
 }

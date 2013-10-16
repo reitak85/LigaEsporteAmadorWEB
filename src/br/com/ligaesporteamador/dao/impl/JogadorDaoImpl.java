@@ -32,7 +32,6 @@ public class JogadorDaoImpl extends DataAccessService<Jogador> implements Jogado
 
 	@Override
 	public void deleteJogador(Long id) throws Exception {
-		delete(id);
 	}
 	
 }
