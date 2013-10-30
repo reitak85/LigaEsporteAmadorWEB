@@ -11,11 +11,11 @@ import javax.persistence.TemporalType;
 public class BaseEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATA_DE_CRIACAO")
+	@Column(name = "data_criacao")
 	private Calendar dataDeCriacao;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATA_DE_ATUALIZACAO")
+	@Column(name = "data_atualizacao")
 	private Calendar dataDeAtualizacao;
 
 	public Calendar getDataDeCriacao() {
