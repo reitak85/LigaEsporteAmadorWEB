@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../../template/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+
+			<div style="margin-top: 50px; margin-bottom: 100px; margin-left: 250px;">
+			
+				<h:outputText value="Cadastro de Midias" style="font-size:22px;"/>
+				<br/>
+				<br/>
+				<br/>
+				
+	      		<h:form id="cadastrarMidia">
+	      		
+	      			<h:panelGrid columns="2" styleClass="alingRigth" style="width:300px;">
+	      			
+		      			<h:outputLabel value="Midia "/>
+		      			<p:selectOneMenu value="" styleClass="alingLeft" style="width:150px; font-size:12px;">
+		      				<f:selectItem itemLabel="Selecione" noSelectionOption="false"/>
+		      				<f:selectItem itemLabel="Superior" noSelectionOption="1"/>
+		      				<f:selectItem itemLabel="Inferior 1" noSelectionOption="2"/>
+		      				<f:selectItem itemLabel="Inferior 2" noSelectionOption="3"/>
+		      				<f:selectItem itemLabel="Inferior 3" noSelectionOption="4"/>
+		      			</p:selectOneMenu>
+		      			
+		      			<h:outputLabel value="Cliente "/>
+		      			<p:inputText size="30"/>
+		      			
+		      			<h:outputLabel value="Data Inicial "/>
+		      			<p:calendar />
+		      			
+		      			<h:outputLabel value="Data Final "/>
+		      			<p:calendar />
+		      				
+		      		</h:panelGrid>
+		      		
+		      		<h:panelGrid style="margin-left:85px; margin-top:5px; margin-bottom:5px;">
+						<h:outputLabel value="Imagem Midia"/>
+						<p:fileUpload
+							fileUploadListener="#{fileUploadController.handleFileUpload}"
+							mode="advanced" dragDropSupport="false"
+							sizeLimit="100000" fileLimit="1"
+							cancelLabel="Cancelar"
+							uploadLabel="Salvar"
+							label="Procurar"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+					</h:panelGrid>
+					
+					<h:panelGrid>
+		      			<p:commandButton  update="cadastrarMidia" value="Salvar" style="margin-top:10px; margin-left:310px;"/>
+					</h:panelGrid>
+	      		
+	      		</h:form>
+	      		<h:panelGrid style="width:500px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
+      		</div>  	
+        </ui:define>
+    </ui:composition>
+</html>

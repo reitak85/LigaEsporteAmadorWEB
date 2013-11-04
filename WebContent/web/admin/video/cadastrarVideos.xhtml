@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../../template/templateAdmin.xhtml">
+        <ui:define name="conteudo">
+
+      		<div style="margin-top: 30px; margin-bottom: 100px; margin-left: 225px;">
+      		
+      			<h:outputText value="Cadastro de Videos" style="font-size:22px;"/>
+				<br/>
+				<br/>
+				<br/>
+      		
+      			<h:form >
+      				<h:panelGrid id="formVideo" columns="2" styleClass="alingRigth" >
+      				
+      					
+      				
+      					<h:outputLabel value="Titulo" />
+      					<p:inputText size="40" maxlength="70" value="#{cadVideoController.video.titulo}"/>
+      					
+      					<h:outputLabel value="Sub-Titulo" />
+      					<p:inputText size="40" maxlength="70" value="#{cadVideoController.video.subTitulo}"/>
+      					
+      					<h:outputLabel value="Creditos do Video" />
+      					<p:inputText size="40" maxlength="70" value="#{cadVideoController.video.creditoVideo}"/>
+						
+						<h:outputLabel value="Url Video" />
+      					<p:inputText size="40" maxlength="150" value="#{cadVideoController.video.urlVideo}"/>
+      					
+      					<h:outputLabel value="Categoria" />
+      					<p:inputText size="40" maxlength="40" value="#{cadVideoController.video.categoria}"/>
+      					
+      					<h:outputLabel value="Data do Video" />
+      					<p:calendar pattern="dd/MM/yyyy" value="#{cadVideoController.video.dataDeCriacao}"/>
+      					
+      					<h:outputLabel value="Notícias parte I"/>
+						<p:inputTextarea cols="80" rows="6" autoResize="false"  maxlength="500" value="#{cadVideoController.video.noticiaUm}"/>
+						
+						<h:outputLabel value="Notícias parte II"/>
+						<p:inputTextarea cols="80" rows="6" autoResize="false" maxlength="500" value="#{cadVideoController.video.noticiaDois}"/>
+						
+						<h:outputLabel value="Notícias parte III"/>
+						<p:inputTextarea cols="80" rows="6" autoResize="false" maxlength="500" value="#{cadVideoController.video.noticiaTres}"/>
+      					
+      				</h:panelGrid>
+      			
+
+					<h:panelGrid style="margin-top:10px; margin-left:352px;">
+						<p:commandButton  action="#{cadVideoController.insertVideo}" value="Gravar" update="formVideo"/>
+					</h:panelGrid>
+					
+      			</h:form>
+      			
+      			<h:panelGrid style="width:500px;">
+	      			<p:messages id="messages" autoUpdate="true" closable="true" >
+						<p:effect type="fade" event="load" speed="10000" />
+					</p:messages>
+				</h:panelGrid>
+				
+      		</div>
+        </ui:define>
+    </ui:composition>
+</html>

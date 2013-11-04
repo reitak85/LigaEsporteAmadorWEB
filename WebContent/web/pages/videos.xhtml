@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	<div id="div1" >
+                <img src="../../resources/img/videos.fw.png"/>
+             </div>
+             <div id="menu2">
+	             <div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>
+             </div>
+            
+             <h:form id="videos" style="margin-top:10px;">
+             
+             	<p:panel>
+             		<h:panelGrid id="busca" columns="2" style="margin-left:auto; margin-right:auto;">
+             			
+             			<p:inputText size="50" maxlength="100" style="height:40px; background-color:#eeeeee;"/>
+             			<p:commandButton icon="ui-icon-search" style="height:40px; width:40px;" update="busca dataVideos"/>
+             			
+             		</h:panelGrid>
+             	</p:panel>
+             	
+             	<div style="margin-top:20px; margin-bottom: 20px;" >
+             	
+	             	<p:dataGrid id="dataVideos" columns="3" var="video" value="#{videoController.videos}" 
+	             				rows="12" paginator="true"  
+        						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        						rowsPerPageTemplate="9,12,15" 
+        						currentPageReportTemplate="({currentPage} de {totalPages})"
+	             				emptyMessage="Nenhum video encontrado">
+								
+						<h:panelGrid columns="1" style="width:100%; margin-left:13px;">
+						
+							<p:media value="#{video.urlVideo}" width="280" height="200" player="flash"/>
+							<h:outputText value="#{video.titulo}"/>								
+							
+						</h:panelGrid>
+						
+					</p:dataGrid>
+				</div>
+             
+             </h:form>  
+			
+        </ui:define>
+    </ui:composition>
+</html>

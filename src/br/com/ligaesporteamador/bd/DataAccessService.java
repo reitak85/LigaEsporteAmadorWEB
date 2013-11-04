@@ -65,8 +65,8 @@ public abstract class DataAccessService<T> {
     	List<T> valores = new ArrayList<T>();
     	Query q = this.em.createQuery(query);
     	
-    	for (Map.Entry<String, Object> entry : params.entrySet()) {
-			q.setParameter(entry.getKey(), Long.valueOf(entry.getValue().toString()));
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			q.setParameter(entry.getKey(), entry.getValue().toString());
 		}
     	
     	valores =  q.getResultList();
