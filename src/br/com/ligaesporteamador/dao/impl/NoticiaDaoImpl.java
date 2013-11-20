@@ -19,7 +19,7 @@ public class NoticiaDaoImpl extends DataAccessService<Noticia> implements Notici
 
 		Map<String, Object>  params = new HashMap<String, Object>();
 		
-		String query ="SELECT CE FROM Noticia NO";
+		String query ="SELECT NO FROM Noticia NO";
 		
 		return createQueryById(query, params);
 	}
@@ -30,7 +30,7 @@ public class NoticiaDaoImpl extends DataAccessService<Noticia> implements Notici
 
 		Map<String, Object>  params = new HashMap<String, Object>();
 		
-		String query ="SELECT CE FROM Noticia NO WHERE NO.esporte.id = :ESPORTE_ID";	
+		String query ="SELECT NO FROM Noticia NO WHERE NO.esporte.id = :ESPORTE_ID";	
 		params.put("ESPORTE_ID", esporte.getId());
 		
 		return createQueryById(query, params);

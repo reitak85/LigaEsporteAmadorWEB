@@ -16,14 +16,14 @@ import br.com.ligaesporteamador.service.EsporteService;
 import br.com.ligaesporteamador.service.VideoService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 
-@Controller("videoController")
+@Controller("cadVideoController")
 @Scope("request")
 public class VideoController extends VideoBO {
 
 	private Video video;
-	private List<Video> videos;
-	private List<Video> videosAmador;
 	private List<Esporte> esportes;
+	private List<Video> videos;
+	private String nome;
 
 	@Autowired
 	VideoService videoService;
@@ -34,31 +34,12 @@ public class VideoController extends VideoBO {
 	public VideoController() {
 
 		video = new Video();
-		videos = new ArrayList<Video>();
 		esportes = new ArrayList<Esporte>();
-		videosAmador = new ArrayList<Video>();
+		videos = new ArrayList<Video>();
 	}
 
 	public Video getVideo() {
 		return video;
-	}
-
-	@PostConstruct
-	public void findHomeVideos() {
-		try {
-			videos = videoService.findVideoHome();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@PostConstruct
-	public void findHomeVideoAmador() {
-		try {
-			videosAmador = videoService.findHomeVideoAmador();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@PostConstruct
@@ -76,11 +57,14 @@ public class VideoController extends VideoBO {
 
 			String message = validadteForm(video);
 
-			if (!message.equals("")) {
+			if (message.equals("")) {
+
+				video = insertDateValidation(video);
 
 				videoService.insertVideo(video);
 
-				EnviarMensagem.atencao("Video cadastrado com sucesso.", null,false);
+				EnviarMensagem.atencao("Video cadastrado com sucesso.", null,
+						false);
 				video = new Video();
 
 			} else {
@@ -92,16 +76,17 @@ public class VideoController extends VideoBO {
 		}
 	}
 
+	public void findAllVideo() {
+
+		try {
+			videos = videoService.findAllVideo(nome);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void setVideo(Video video) {
 		this.video = video;
-	}
-
-	public List<Video> getVideos() {
-		return videos;
-	}
-
-	public void setVideos(List<Video> videos) {
-		this.videos = videos;
 	}
 
 	public List<Esporte> getEsportes() {
@@ -112,12 +97,20 @@ public class VideoController extends VideoBO {
 		this.esportes = esportes;
 	}
 
-	public List<Video> getVideosAmador() {
-		return videosAmador;
+	public List<Video> getVideos() {
+		return videos;
 	}
 
-	public void setVideosAmador(List<Video> videosAmador) {
-		this.videosAmador = videosAmador;
+	public void setVideos(List<Video> videos) {
+		this.videos = videos;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

@@ -32,4 +32,82 @@ public class VideoServiceImpl implements VideoService{
 		return videoDao.findHomeVideoAmador();
 	}
 
+
+	@Override
+	public List<Video> findAllVideo(String nome) throws Exception {
+		return videoDao.findAllVideo(nome);
+	}
+
+
+	@Override
+	public List<Video> findVideoFutebol() throws Exception {
+		return videoDao.findVideoFutebol();
+	}
+
+
+	@Override
+	public List<Video> findVideoBasquete() throws Exception {
+		return videoDao.findVideoBasquete();
+	}
+
+
+	@Override
+	public List<Video> findVideoVolei() throws Exception {
+		return videoDao.findVideoVolei();
+	}
+
+
+	@Override
+	public List<Video> findVideoHandebol() throws Exception {
+		return videoDao.findVideoHandebol();
+	}
+
+
+	@Override
+	public List<Video> findVideoTenis() throws Exception {
+		return videoDao.findVideoTenis();
+	}
+
+
+	@Override
+	public List<Video> findVideoRugby() throws Exception {
+		return videoDao.findVideoRugby();
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorFutebol() throws Exception {
+		return videoDao.findVideoAmadorFutebol();
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorBasquete() throws Exception {
+		return null;
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorVolei() throws Exception {
+		return null;
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorHandebol() throws Exception {
+		return null;
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorTenis() throws Exception {
+		return null;
+	}
+
+
+	@Override
+	public List<Video> findVideoAmadorRugby() throws Exception {
+		return null;
+	}
+
 }

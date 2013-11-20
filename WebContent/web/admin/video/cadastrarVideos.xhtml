@@ -17,7 +17,11 @@
       			<h:form >
       				<h:panelGrid id="formVideo" columns="2" styleClass="alingRigth" >
       				
-      					
+      					<h:outputLabel value="Esporte "/>
+	      				<p:selectOneMenu value="#{cadVideoController.video.esporte.id}" styleClass="alingLeft" style="width:150px; font-size:12px;">
+	      					<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+	      					<f:selectItems value="#{cadVideoController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"/>
+	      				</p:selectOneMenu>
       				
       					<h:outputLabel value="Titulo" />
       					<p:inputText size="40" maxlength="70" value="#{cadVideoController.video.titulo}"/>
@@ -34,9 +38,14 @@
       					<h:outputLabel value="Categoria" />
       					<p:inputText size="40" maxlength="40" value="#{cadVideoController.video.categoria}"/>
       					
-      					<h:outputLabel value="Data do Video" />
-      					<p:calendar pattern="dd/MM/yyyy" value="#{cadVideoController.video.dataDeCriacao}"/>
+      					<h:outputLabel value="Palavras Chaves" 
+      					title="Palavra chave serve para poder localizar os videos é para indexar os coteudos cadastro Ex. Ftuebol Neymar Seleção"/>
+      					<p:inputText size="40" maxlength="70" value="#{cadVideoController.video.palavraChave}"/>
       					
+      					<h:outputText value="Destaque Video " 
+      					title="Destaque de Video é para quando você quer cadastrar um video e quer o mesmo seja apresenado na sua tela principal, como na Futebol.html ou Home.html"/>  
+        				<p:selectBooleanCheckbox value="#{cadVideoController.video.destaqueVideo}" /> 
+      					      					
       					<h:outputLabel value="Notícias parte I"/>
 						<p:inputTextarea cols="80" rows="6" autoResize="false"  maxlength="500" value="#{cadVideoController.video.noticiaUm}"/>
 						

@@ -15,7 +15,7 @@
 				<br/>
       		
       			<h:form id="noticiaForm">
-      				<h:panelGrid columns="2" styleClass="alingRigth">
+      				<h:panelGrid columns="2" styleClass="alingRigth" style="width:500px;">
       				
       					<h:outputLabel value="Esporte:"/>
       					<p:selectOneMenu value="#{noticiaController.noticia.esporte.id}" style="width:200px;" styleClass="alingLeft" >
@@ -23,20 +23,18 @@
 	      					<f:selectItems value="#{noticiaController.esportes}" var="esporte" itemLabel="#{esporte.nome}" itemValue="#{esporte.id}"/>
 	      				</p:selectOneMenu>
       				
-      					<h:outputLabel value="Titulo:" />
+      					<h:outputLabel value="Titulo " />
       					<p:inputText value="#{noticiaController.noticia.titulo}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Sub-Titulo:" />
+      					<h:outputLabel value="Sub-Titulo " />
       					<p:inputText value="#{noticiaController.noticia.subTitulo}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Creditos da Imagem:" />
+      					<h:outputLabel value="Cred. Imagem " />
       					<p:inputText value="#{noticiaController.noticia.credito}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Legenda da Imagem:" />
+      					<h:outputLabel value="Leg. Imagem " />
       					<p:inputText value="#{noticiaController.noticia.legenda}" size="50" maxlength="70"/>
       					
-      					<h:outputLabel value="Data do Notícia:" />
-      					<p:calendar value="#{noticiaController.noticia.data}" pattern="dd/MM/yyyy"/>
       				
       				</h:panelGrid>
       				
@@ -47,7 +45,7 @@
 									  fileLimit="1" 
 									  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 									  label="Selecionar"
-									  uploadLabel="Atualizar"
+									  uploadLabel="Salvar"
 									  cancelLabel="Cancelar"   />
 					</h:panelGrid>
 					

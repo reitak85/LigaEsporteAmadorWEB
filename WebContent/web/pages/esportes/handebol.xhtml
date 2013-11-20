@@ -16,12 +16,99 @@
 				<ui:include src="../../../web/menu/menuInterno.jsp" />
 			</div>
 		</div>
-		
-		<div style="margin-top: 10px; margin-bottom: 10px; z-index:1; "> 
+
+		<div style="margin-top: 10px; margin-bottom: 10px; z-index: 1;">
 			<p:galleria value="#{galleriaController.images}" var="image"
-				panelWidth="500" panelHeight="400"  showFilmstrip="true" showCaptions="true" showOverlays="true" filmstripPosition="true" >
-				<p:graphicImage value="/resources/futebol/#{image}" alt="Image Description for #{image}" title="Liga Esporte Amador" width="500" height="400" />
+				panelWidth="540" panelHeight="400" showFilmstrip="true"
+				style="z-index:1;">
+				<p:graphicImage value="/resources/futebol/#{image}"
+					alt="Image Description for #{image}" title="Liga Esporte Amador"
+					width="500" height="400" />
 			</p:galleria>
+		</div>
+
+		<div
+			style="width: 400px; height: 220px; background-color: #000; margin-left: 560px; margin-top: -455px;">
+
+		</div>
+
+
+		<div
+			style="margin-top: 20px; margin-left: 560px; width: 400px; height: 373px;">
+
+			<a href="#{request.contextPath}/web/pages/videos.html"> <font
+				class="maisVideos">Mais Videos</font>
+			</a>
+
+			<div style="height: 5px; width: 100%; background-color: #D96D00;"></div>
+
+			<p:dataGrid columns="2" var="video" value="#{handebolController.videos}"
+				style="width:400px; margin-top:10px;">
+
+				<h:panelGrid columns="1" style="width:100%">
+
+					<p:media value="#{video.urlVideo}" width="180" height="140"
+						player="flash" />
+					<h:outputText value="#{video.titulo}" />
+
+				</h:panelGrid>
+
+			</p:dataGrid>
+
+		</div>
+
+		<div style="margin-top: -135px; width: 540px; height: 373px;">
+			<a href="#{request.contextPath}/web/pages/esportes/futebol.html">
+				<font class="noticias">Noticias</font>
+			</a>
+			<div style="height: 5px; width: 100%; background-color: #D96D00;"></div>
+
+			<p:dataGrid columns="3" var="video" 
+				style="width:400px; margin-top:10px;">
+
+				<h:panelGrid columns="1" style="width:100%">
+
+					<p:media value="" width="160" height="140"
+						player="flash" />
+					<h:outputText value="" />
+
+				</h:panelGrid>
+
+			</p:dataGrid>
+
+		</div>
+
+		<div
+			style="width: 400px; margin-left: 560px; margin-top: -215px; margin-bottom: 20px;">
+			<font class="noticias">Institucional</font>
+			<div style="height: 5px; width: 100%; background-color: #D96D00;" />
+
+			<div
+				style="width: 400px; height: 180px; background-color: #000; margin-top: 5px;">
+
+
+
+			</div>
+		</div>
+
+		<div style="width: 100%; margin-bottom: 20px; height: 223px;">
+			<font class="noticias">Esporte Amador</font>
+			<div style="height: 5px; width: 100%; background-color: #D96D00;" />
+
+			<p:dataGrid columns="4" var="video"
+				value="#{handebolController.videosAmador}"
+				style="width:400px; margin-top:10px;"
+				emptyMessage="Nenhum video amador encontrado.">
+
+				<h:panelGrid columns="1" style="width:100%; margin-left:13px;">
+
+					<p:media value="#{video.urlVideo}" width="200" height="160"
+						player="flash" />
+					<h:outputText value="#{video.titulo}" />
+
+				</h:panelGrid>
+
+			</p:dataGrid>
 		</div>
 
 

@@ -66,7 +66,9 @@ public abstract class DataAccessService<T> {
     	Query q = this.em.createQuery(query);
     	
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			q.setParameter(entry.getKey(), entry.getValue().toString());
+
+			q.setParameter(entry.getKey(), entry.getValue());
+
 		}
     	
     	valores =  q.getResultList();

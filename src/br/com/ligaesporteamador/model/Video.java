@@ -45,12 +45,22 @@ public class Video extends BaseEntity {
 	private String noticiaTres;
 
 	@Column(name = "CATEGORIA")
-	private String categoria; // significa se Ž amador, profissional, sub-20
+	private String categoria;
+
+	@Column(name = "PALAVRA_CHAVE")
+	private String palavraChave;
+
+	@Column(name = "DESTAQUE_VIDEO")
+	private boolean destaqueVideo;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,
 			CascadeType.MERGE })
 	@JoinColumn(name = "ESPORTE_ID")
 	private Esporte esporte;
+	
+	public Video() {
+		esporte = new Esporte();
+	}
 
 	public Long getId() {
 		return id;
@@ -138,6 +148,22 @@ public class Video extends BaseEntity {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	public String getPalavraChave() {
+		return palavraChave;
+	}
+
+	public void setPalavraChave(String palavraChave) {
+		this.palavraChave = palavraChave;
+	}
+
+	public boolean isDestaqueVideo() {
+		return destaqueVideo;
+	}
+
+	public void setDestaqueVideo(boolean destaqueVideo) {
+		this.destaqueVideo = destaqueVideo;
 	}
 
 }
