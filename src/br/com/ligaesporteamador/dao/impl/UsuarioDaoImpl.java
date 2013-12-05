@@ -32,6 +32,17 @@ public class UsuarioDaoImpl extends DataAccessService<Usuario> implements Usuari
 
 		return createQueryUniqueResultID(query, params);
 	}
+	
+	@Override
+	public Usuario findUsuarioDuclicado(Usuario usuario) throws Exception {
+
+		Map<String, Object>  params = new HashMap<String, Object>();
+
+		String query ="SELECT U FROM Usuario U WHERE U.cpf = :cpf";	
+		params.put("cpf", usuario.getCpf());
+
+		return createQueryUniqueResult(query, params);
+	}
 
 	@Override
 	public void deleteUsuario(Usuario usuario) throws Exception {

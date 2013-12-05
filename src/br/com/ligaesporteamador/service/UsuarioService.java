@@ -11,4 +11,6 @@ public interface UsuarioService {
 	Usuario findUsuario(Long id) throws Exception;
 	
 	void deleteUsuario(Usuario usuario) throws Exception;
+
+	Usuario findUsuarioDuplicado(Usuario usuario) throws Exception;
 }

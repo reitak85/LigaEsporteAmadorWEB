@@ -27,12 +27,18 @@ public class UsuarioController extends UsuarioBO{
 		usuario = new Usuario();
 	}
 
-	public void insertUsuario() {
+	public void insertUsuario() throws Exception {
 		
 		String message = validaPreenchimento(usuario);
 		
+		Usuario user = usuarioService.findUsuarioDuplicado(usuario);
+		
+		
+		
 		if(!message.equals("")){
 			EnviarMensagem.atencao(message, null, false);
+		}else if(user.getCpf().length()>0 && user !=null ) {
+			EnviarMensagem.atencao("Usuario com esse CPF já se encontra cadastrado : " + user.getCpf(), null, false);
 		}else{
 			try {
 			

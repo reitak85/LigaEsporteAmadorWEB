@@ -11,6 +11,8 @@ import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.ligaesporteamador.model.Usuario;
+
 
 public abstract class DataAccessService<T> {
 
@@ -113,5 +115,8 @@ public abstract class DataAccessService<T> {
 		
 		return null;
     }
+
+
+	
    
 }

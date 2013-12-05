@@ -100,9 +100,6 @@ public class TimeController extends TimeBO {
 		try {
 
 			WsBuscaPorCep bucaEnd = new WsBuscaPorCep();
-			/*time.getComplementoEndereco().setEndereco(
-					enderecoService.findEnderecoByCep(time
-							.getComplementoEndereco().getEndereco()));*/
 			bucaEnd.buscaCep(time
 					.getComplementoEndereco().getEndereco());
 			

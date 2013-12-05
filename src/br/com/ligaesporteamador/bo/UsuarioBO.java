@@ -66,6 +66,7 @@ public class UsuarioBO {
 	}
 	
 	
+	
 	public Usuario insertDateValidation(Usuario usuario) throws Exception{
 		usuario.setDataDeCriacao(Calendar.getInstance());
 		return usuario;

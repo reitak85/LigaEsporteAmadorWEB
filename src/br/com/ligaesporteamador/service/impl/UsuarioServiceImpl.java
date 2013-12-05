@@ -28,6 +28,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 		return usuarioDao.findUsuario(id);
 	}
+	
+	@Override
+	public Usuario findUsuarioDuplicado(Usuario usuario) throws Exception {
+		
+		return usuarioDao.findUsuarioDuclicado(usuario);
+	}
 
 	@Override
 	public void deleteUsuario(Usuario usuario) throws Exception {

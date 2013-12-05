@@ -11,4 +11,6 @@ public interface UsuarioDao {
 	Usuario findUsuario(Long id) throws Exception;
 	
 	void deleteUsuario(Usuario usuario) throws Exception;
+	
+	public Usuario findUsuarioDuclicado(Usuario usuario) throws Exception;
 }
