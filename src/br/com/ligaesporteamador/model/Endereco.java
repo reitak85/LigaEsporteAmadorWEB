@@ -23,6 +23,17 @@ public class Endereco {
 	@Column(name = "CEP", length = 20)
 	private String cep;
 
+	@Column(name = "TIPOLOGRADOURO", length = 30)
+	private String tipoLogradouro;
+	
+	public String getTipoLogradouro() {
+		return tipoLogradouro;
+	}
+
+	public void setTipoLogradouro(String tipoLogradouro) {
+		this.tipoLogradouro = tipoLogradouro;
+	}
+
 	@Column(name = "NOME", length = 250)
 	private String nome;
 
@@ -33,6 +44,8 @@ public class Endereco {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
 	@JoinColumn(name = "BAIRRO_ID")
 	private Bairro bairro;
+	
+	
 	
 	public Endereco() {
 		cidade = new Cidade();

@@ -26,6 +26,7 @@ import br.com.ligaesporteamador.service.TimeService;
 import br.com.ligaesporteamador.service.UsuarioService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 import br.com.ligaesporteamador.util.Util;
+import br.com.ligaesporteamador.wscep.WsBuscaPorCep;
 
 @Controller("timeController")
 @Scope("session")
@@ -98,9 +99,13 @@ public class TimeController extends TimeBO {
 	public void findEnderecoByCep() {
 		try {
 
-			time.getComplementoEndereco().setEndereco(
+			WsBuscaPorCep bucaEnd = new WsBuscaPorCep();
+			/*time.getComplementoEndereco().setEndereco(
 					enderecoService.findEnderecoByCep(time
-							.getComplementoEndereco().getEndereco()));
+							.getComplementoEndereco().getEndereco()));*/
+			bucaEnd.buscaCep(time
+					.getComplementoEndereco().getEndereco());
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
