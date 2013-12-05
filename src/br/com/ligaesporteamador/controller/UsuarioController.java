@@ -37,7 +37,7 @@ public class UsuarioController extends UsuarioBO{
 		
 		if(!message.equals("")){
 			EnviarMensagem.atencao(message, null, false);
-		}else if(user.getCpf().length()>0 && user !=null ) {
+		}else if(user !=null && user.getCpf().length()>0 ) {
 			EnviarMensagem.atencao("Usuario com esse CPF já se encontra cadastrado : " + user.getCpf(), null, false);
 		}else{
 			try {
