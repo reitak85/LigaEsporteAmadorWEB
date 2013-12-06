@@ -41,7 +41,7 @@ public class UsuarioDaoImpl extends DataAccessService<Usuario> implements Usuari
 		String query ="SELECT U FROM Usuario U WHERE U.cpf = :cpf";	
 		params.put("cpf", usuario.getCpf());
 
-		return createQueryUniqueResult(query, params);
+		return createQueryUniqueResult(query, params);  
 	}
 
 	@Override

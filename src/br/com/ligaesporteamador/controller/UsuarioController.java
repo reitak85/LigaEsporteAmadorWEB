@@ -40,7 +40,7 @@ public class UsuarioController extends UsuarioBO{
 		}else if(user !=null && user.getCpf().length()>0 ) {
 			EnviarMensagem.atencao("Usuario com esse CPF já se encontra cadastrado : " + user.getCpf(), null, false);
 		}else{
-			try {
+			try {  
 			
 				if(usuario.getId() != null){
 					usuario = updateDateValidation(usuario);

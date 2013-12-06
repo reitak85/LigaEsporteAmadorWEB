@@ -12,5 +12,5 @@ public interface UsuarioDao {
 	
 	void deleteUsuario(Usuario usuario) throws Exception;
 	
-	public Usuario findUsuarioDuclicado(Usuario usuario) throws Exception;
+	public Usuario findUsuarioDuclicado(Usuario usuario) throws Exception;  
 }

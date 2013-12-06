@@ -18,7 +18,7 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ENDERECO_ID", length = 10)
-	private Long id;
+	private Long id; 
 
 	@Column(name = "CEP", length = 20)
 	private String cep;

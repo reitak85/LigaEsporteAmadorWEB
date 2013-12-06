@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public Usuario findUsuarioDuplicado(Usuario usuario) throws Exception {
 		
-		return usuarioDao.findUsuarioDuclicado(usuario);
+		return usuarioDao.findUsuarioDuclicado(usuario);  
 	}
 
 	@Override
