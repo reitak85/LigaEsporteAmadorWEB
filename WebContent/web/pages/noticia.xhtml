@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	<div id="div1" >
+                <img src="../../resources/img/localizarTime.fw.png"/>
+             </div>
+             <div id="menu2">
+	             <div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>
+             </div>
+            
+             <h:form>
+				<p:panel>
+             		<h:panelGrid id="busca" columns="2" style="margin-left:auto; margin-right:auto; margin-top:10px;">
+             			
+             			<p:inputText size="50" maxlength="100" style="height:40px; background-color:#eeeeee;" value=""/>
+             			<p:commandButton icon="ui-icon-search" style="height:40px; width:40px;"/>
+             			
+             		</h:panelGrid>
+             	</p:panel>					             
+	        </h:form>    
+			
+        </ui:define>
+    </ui:composition>
+</html>

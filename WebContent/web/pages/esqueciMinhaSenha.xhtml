@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+          
+     <ui:composition template="../template/templateGeral.xhtml">
+        <ui:define name="conteudo">
+        	<div id="div1" >
+                <img src="../../resources/img/localizarTime.fw.png"/>
+             </div>
+             <div id="menu2">
+	             <div class="menuInternoInterior">
+					<ui:include src="../../web/menu/menuInterno.jsp" />
+				</div>
+             </div>
+            
+             <h:form>
+				<p:panel>
+             		<h:panelGrid columns="2">
+             			<h:outputLabel value="E-mail"/>
+             			<p:inputText id="email" 
+             			             required="true"  
+             			             size="40" maxlength="100"
+	 								 validatorMessage = "E-mail inválido formato">
+		  					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText> 
+             		</h:panelGrid>
+
+					<h:panelGrid>
+						<p:commandButton value="Enviar"/>
+					</h:panelGrid>
+				</p:panel>					             
+	        </h:form>
+	        
+	        <h:panelGrid>
+				<p:messages id="messages" autoUpdate="true" closable="true">
+					<p:effect type="fade" event="load" speed="10000" />
+				</p:messages>
+			</h:panelGrid>    
+			
+        </ui:define>
+    </ui:composition>
+</html>

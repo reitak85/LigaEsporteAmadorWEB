@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		
-		<div style="margin-top: 10px; margin-bottom: 10px; z-index: 1;">
+		<div style="margin-top: 10px; margin-bottom: 10px; z-index: 1; width: 540px; height:400px; ">
 
 			<p:galleria value="#{futebolController.noticias}" var="noticia"
 				panelWidth="540" panelHeight="400" showCaption="true"
@@ -33,7 +33,7 @@
 		</div>
 		
 		<div
-			style="width: 400px; height: 220px; background-color: #000; margin-left: 560px; margin-top: -455px;">
+			style="width: 400px; height: 220px; background-color: #000; margin-left: 560px; margin-top: -410px;">
 
 		</div>
 
@@ -68,15 +68,18 @@
 			</a>
 			<div style="height: 5px; width: 100%; background-color: #407813;"></div>
 
-			<p:dataGrid columns="3" var="video" 
+			<p:dataGrid columns="3" var="noticia" value="#{futebolController.noticias}" 
 				style="width:400px; margin-top:10px;">
 
 				<h:panelGrid columns="1" style="width:100%">
 
-					<p:media value="" width="160" height="140"
-						player="flash" />
-					<h:outputText value="" />
-
+					<p:graphicImage value="#{noticia.imagem}" 
+									alt="Image Description for" 
+									title="Liga Esporte Amador"
+									width="180" height="140" cache="false" />
+					<h:link>									
+						<h:outputText value="#{noticia.titulo}"  style="color:#333; font-weight: bold;"/>
+					</h:link>
 				</h:panelGrid>
 
 			</p:dataGrid>

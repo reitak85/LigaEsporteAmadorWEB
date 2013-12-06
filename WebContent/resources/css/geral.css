@@ -100,10 +100,10 @@ video{
 .menuSuperiorHome ul li a{
 	text-decoration: none;
 	color: #D96D00;
-	padding: 10px 5px;
+	padding: 10px 11px;
 	display: inline-block;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .menuSuperiorHome ul li a:HOVER{
@@ -219,12 +219,16 @@ video{
     display: none;
 }
 
-#alinhamento{
-	width: 960px;
-	height:120px;
-	margin-top:5px;
+#principalTopo{
 	margin-left: auto;
 	margin-right: auto;
+	width:960px;
+}
+
+#alinhamento{
+	width: 400px;
+	height:120px;
+	margin-top:5px;
 }
 
 .menuRodape{
