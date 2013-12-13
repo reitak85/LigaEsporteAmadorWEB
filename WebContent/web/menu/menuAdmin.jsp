@@ -9,4 +9,10 @@
 	  <li><a href="#{request.contextPath}/web/admin/video/cadastrarVideos.html">CADASTRAR VIDEOS</a></li>
 	</ul>
   </li>
+  <li>
+  	VISUALIZAR
+  	<ul>
+  		<li><a href="#{request.contextPath}/web/admin/esporte/visualizarEsporte.html">VISUALIZAR ESPORTE</a></li>
+  	</ul>
+  </li>
 </ul>

@@ -3,9 +3,12 @@ package br.com.ligaesporteamador.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import br.com.ligaesporteamador.bo.EsporteBO;
 import br.com.ligaesporteamador.model.Esporte;
@@ -41,7 +44,12 @@ public class EsporteController extends EsporteBO{
 				EnviarMensagem.informacao("Esporte cadastrado com sucesso.", null, false);
 			}
 			
-		} catch (Exception e) {
+		}catch(MySQLIntegrityConstraintViolationException ms){
+			EnviarMensagem.atencao("Esporte j‡ cadastrado", null, false);
+		}
+		catch(ConstraintViolationException c){
+			EnviarMensagem.atencao("Esporte j‡ cadastrado", null, false);
+		}catch (Exception e) {
 			EnviarMensagem.erro("Erro ao cadastrar esporte !", null, false);
 			e.printStackTrace();
 		}

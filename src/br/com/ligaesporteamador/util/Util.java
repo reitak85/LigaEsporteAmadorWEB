@@ -55,5 +55,10 @@ public class Util {
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
 		session.removeAttribute(name);
 	}
+	
+	public static String getParam(String value){
+		
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(value);
+	}
 
 }

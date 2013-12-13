@@ -3,7 +3,6 @@ package br.com.ligaesporteamador.bd;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.ejb.Ejb3Configuration;

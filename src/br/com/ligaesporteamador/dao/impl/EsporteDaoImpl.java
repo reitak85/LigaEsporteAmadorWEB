@@ -2,6 +2,7 @@ package br.com.ligaesporteamador.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 
 import br.com.ligaesporteamador.bd.DataAccessService;
@@ -17,8 +18,19 @@ public class EsporteDaoImpl extends DataAccessService<Esporte> implements Esport
 	}
 
 	@Override
-	public void insertEsporte(Esporte esporte) throws Exception {
+	public void insertEsporte(Esporte esporte) throws Exception, ConstraintViolationException {
 		create(esporte);
+	}
+
+	@Override
+	public void excluirEsporte(Long id) throws Exception {
+		Esporte esporte = em.find(Esporte.class, id);
+		remove(esporte);
+	}
+
+	@Override
+	public Esporte findEsporteById(Long id) throws Exception{
+		return em.find(Esporte.class, id);
 	}
 
 }

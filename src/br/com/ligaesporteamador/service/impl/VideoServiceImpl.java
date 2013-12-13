@@ -13,7 +13,7 @@ import br.com.ligaesporteamador.service.VideoService;
 public class VideoServiceImpl implements VideoService{
 
 	@Autowired
-	VideoDao videoDao;
+	private VideoDao videoDao;
 	
 	@Override
 	public List<Video> findVideoHome() throws Exception {

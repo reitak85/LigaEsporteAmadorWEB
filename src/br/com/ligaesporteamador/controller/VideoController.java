@@ -16,7 +16,7 @@ import br.com.ligaesporteamador.service.EsporteService;
 import br.com.ligaesporteamador.service.VideoService;
 import br.com.ligaesporteamador.util.EnviarMensagem;
 
-@Controller("cadVideoController")
+@Controller("cVideoController")
 @Scope("request")
 public class VideoController extends VideoBO {
 
@@ -85,10 +85,6 @@ public class VideoController extends VideoBO {
 		}
 	}
 
-	public void setVideo(Video video) {
-		this.video = video;
-	}
-
 	public List<Esporte> getEsportes() {
 		return esportes;
 	}
@@ -111,6 +107,10 @@ public class VideoController extends VideoBO {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
 	}
 
 }

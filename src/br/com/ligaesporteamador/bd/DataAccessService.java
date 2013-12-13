@@ -11,8 +11,6 @@ import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.ligaesporteamador.model.Usuario;
-
 
 public abstract class DataAccessService<T> {
 
@@ -117,6 +115,16 @@ public abstract class DataAccessService<T> {
     }
 
 
-	
+	public void remove(T t){
+		
+		if(!this.em.getTransaction().isActive()){
+			this.em.getTransaction().begin();
+		}
+		
+		em.remove(t);
+		
+		this.em.flush();
+        this.em.getTransaction().commit();
+	}
    
 }
