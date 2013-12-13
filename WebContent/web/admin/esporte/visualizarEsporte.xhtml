@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../template/templateAdmin.xhtml">
+	<ui:define name="conteudo">
+		<div style="margin-top: 30px; margin-bottom: 30px;">
+			<h:form prependId="false">
+
+				<p:dataTable id="dataTable" var="esporte"
+					value="#{esporteControllerView.esportes}" paginator="true"
+					rows="10"
+					currentPageReportTemplate="({currentPage} de {totalPages})"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+					<f:facet name="header">
+						<h:outputText value="Esportes" />
+					</f:facet>
+
+					<p:column width="30" style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="Id" />
+						</f:facet>
+						<h:outputText value="#{esporte.id}" />
+					</p:column>
+
+					<p:column style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{esporte.nome}" />
+					</p:column>
+
+					<p:column style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="Descrição" />
+						</f:facet>
+						<h:outputText value="#{esporte.descricao}" />
+					</p:column>
+
+					<p:column width="50">
+						<f:facet name="header">
+							<h:outputText value="Alterar" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-pencil" action="#{esporteControllerView.openModal}"
+							style="margin-left:20px; margin-top: 3px; margin-bottom: 3px;">
+							<f:param name="idAlterar" value="#{esporte.id}"></f:param>
+						</p:commandButton>
+					</p:column>
+
+					<p:column width="50">
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-close" update="dataTable"
+							action="#{esporteControllerView.excluirEsporte}"
+							style="margin-left:20px; margin-top: 3px; margin-bottom: 3px;">
+							<f:param name="idExcluir" value="#{esporte.id}"></f:param>
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+
+				<p:dialog id="modalDialog" header="Editar Esporte" widgetVar="dlg2"
+					modal="true" height="220" width="400" >
+					
+					<h:panelGrid columns="2" styleClass="alingRigth" style="margin-top:20px;">
+	      				<h:outputLabel value="Nome "/>
+	      				<p:inputText value="#{esporteControllerView.esporte.nome}"  size="50" maxlength="100"/>
+	      			
+	      				<h:outputLabel value="Descrição"/>
+	      				<p:inputTextarea value="#{esporteControllerView.esporte.descricao}"  cols="50" rows="3" autoResize="false"/>
+	      			</h:panelGrid>
+	      			<h:panelGrid columns="2" style="margin-top:15px; margin-left:auto; margin-right:auto;">
+	      				<p:commandButton value="Cancelar" action="#{esporteControllerView.closeModal}"/>
+	      				<p:commandButton value="Salvar" action="#{esporteControllerView.editarEsporte}"/>
+	      			</h:panelGrid>
+					
+				</p:dialog>
+
+			</h:form>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>
